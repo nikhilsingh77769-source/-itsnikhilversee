@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>itsnikhilversee</title>
+  <meta
+    name="description"
+    content="The personal website of Nikhil Singh. Product, data, stories and everything in between."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      margin-bottom: 24px;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9a9a;
+    }
+
+    h1 {
+      max-width: 800px;
+      font-size: clamp(52px, 10vw, 118px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    p {
+      max-width: 650px;
+      margin-top: 32px;
+      font-size: clamp(18px, 2.4vw, 28px);
+      line-height: 1.4;
+      color: #b8b8b8;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 48px;
+      padding: 12px 18px;
+      border: 1px solid #3a3a3a;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #dedede;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.35;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="eyebrow">Welcome to</div>
+
+    <h1>itsnikhilversee</h1>
+
+    <p>
+      Product. Data. Stories. And everything in between.
+      Something good is loading.
+    </p>
+
+    <div class="status">
+      <span class="dot"></span>
+      Coming soon
+    </div>
+  </main>
+</body>
+</html>
