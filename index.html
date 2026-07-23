@@ -2,29 +2,25 @@
 <html lang="en">
 <head>
   <!-- Google Analytics runs only on the public website, not local previews. -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C"
+  ></script>
   <script>
-    (() => {
-      const analyticsHosts = new Set([
-        "itsnikhilversee.in",
-        "www.itsnikhilversee.in"
-      ]);
+    window.dataLayer = window.dataLayer || [];
 
-      if (!analyticsHosts.has(window.location.hostname)) return;
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
 
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        window.dataLayer.push(arguments);
-      };
+    gtag("js", new Date());
 
-      window.gtag("js", new Date());
-      window.gtag("config", "G-YRV7RXD71C");
-
-      const googleTag = document.createElement("script");
-      googleTag.async = true;
-      googleTag.src =
-        "https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C";
-      document.head.appendChild(googleTag);
-    })();
+    if (
+      window.location.hostname === "itsnikhilversee.in" ||
+      window.location.hostname === "www.itsnikhilversee.in"
+    ) {
+      gtag("config", "G-YRV7RXD71C");
+    }
   </script>
 
   <meta charset="UTF-8" />
