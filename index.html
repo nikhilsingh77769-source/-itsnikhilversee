@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics runs only on the public website, not local previews. -->
+  <script>
+    (() => {
+      const analyticsHosts = new Set([
+        "itsnikhilversee.in",
+        "www.itsnikhilversee.in"
+      ]);
+
+      if (!analyticsHosts.has(window.location.hostname)) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+
+      window.gtag("js", new Date());
+      window.gtag("config", "G-YRV7RXD71C");
+
+      const googleTag = document.createElement("script");
+      googleTag.async = true;
+      googleTag.src =
+        "https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C";
+      document.head.appendChild(googleTag);
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
