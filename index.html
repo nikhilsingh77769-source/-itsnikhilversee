@@ -2,449 +2,168 @@
 <html lang="en">
 <head>
   <!-- Google Analytics runs only on the public website, not local previews. -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C"
-  ></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
-
+    function gtag() { window.dataLayer.push(arguments); }
     gtag("js", new Date());
-
-    if (
-      window.location.hostname === "itsnikhilversee.in" ||
-      window.location.hostname === "www.itsnikhilversee.in"
-    ) {
-      gtag("config", "G-YRV7RXD71C");
-    }
+    if (["itsnikhilversee.in", "www.itsnikhilversee.in"].includes(window.location.hostname)) gtag("config", "G-YRV7RXD71C");
   </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="theme-color" content="#050708" />
+  <meta name="description" content="The internet home of Nikhil Singh — product, stories, cars, travel, music, love, psychology, fitness, food and everything in between." />
   <title>itsnikhilversee — Nikhil Singh</title>
-
-  <meta
-    name="description"
-    content="The internet home of Nikhil Singh — cars, travel, music, love, psychology, fitness, food, products, data and everything in between."
-  />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --text: #f5f3ed;
-      --muted: rgba(245, 243, 237, 0.68);
-      --line: rgba(255, 255, 255, 0.17);
-      --yellow: #f4c94f;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      background: #050608;
-      color: var(--text);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-    }
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      background-image: url("./nikhilverse-hero.png");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      transform: scale(1.01);
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(2, 3, 5, 0.91) 0%,
-          rgba(2, 3, 5, 0.76) 30%,
-          rgba(2, 3, 5, 0.38) 58%,
-          rgba(2, 3, 5, 0.22) 74%,
-          rgba(2, 3, 5, 0.52) 100%
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.35),
-          transparent 30%,
-          transparent 70%,
-          rgba(0, 0, 0, 0.35)
-        );
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
-    }
-
-    .page {
-      width: min(1220px, calc(100% - 40px));
-      min-height: 100vh;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    nav {
-      min-height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--muted);
-      font-family: monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 18px rgba(244, 201, 79, 0.75);
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 64px 0 260px;
-    }
-
-    .hero {
-      width: 100%;
-      text-align: center;
-    }
-
-    .eyebrow {
-      margin-bottom: 22px;
-      color: var(--muted);
-      font-family: monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: rise 0.75s ease forwards 0.05s;
-    }
-
-    h1 {
-      max-width: 960px;
-      margin: 0 auto;
-      font-size: clamp(58px, 8.5vw, 122px);
-      line-height: 0.89;
-      letter-spacing: -0.065em;
-      text-transform: uppercase;
-      text-shadow: 0 8px 34px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      animation: rise 0.9s ease forwards 0.15s;
-    }
-
-    .highlight {
-      color: var(--yellow);
-    }
-
-    .intro {
-      max-width: 660px;
-      margin: 28px auto 0;
-      color: rgba(245, 243, 237, 0.77);
-      font-size: clamp(16px, 1.55vw, 21px);
-      line-height: 1.55;
-      letter-spacing: -0.02em;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      animation: rise 0.8s ease forwards 0.28s;
-    }
-
-    .intro strong {
-      color: white;
-      font-weight: 550;
-    }
-
-    .worlds {
-      max-width: 860px;
-      margin: 42px auto 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      opacity: 0;
-      animation: rise 0.8s ease forwards 0.4s;
-    }
-
-    .world {
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(5, 6, 8, 0.28);
-      color: rgba(245, 243, 237, 0.75);
-      font-family: monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-      transition:
-        transform 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .world:hover {
-      transform: translateY(-3px);
-      color: white;
-      border-color: rgba(244, 201, 79, 0.65);
-      background: rgba(5, 6, 8, 0.5);
-    }
-
-    .statement {
-      margin-top: 34px;
-      color: white;
-      font-family: monospace;
-      font-size: 12px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-      opacity: 0;
-      animation: rise 0.8s ease forwards 0.52s;
-    }
-
-    .statement span {
-      color: var(--yellow);
-    }
-
-    footer {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      backdrop-filter: blur(3px);
-    }
-
-    .footer-message {
-      font-family: monospace;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .footer-message strong {
-      color: var(--yellow);
-      font-weight: 500;
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.45;
-        transform: scale(0.9);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.15);
-      }
-    }
-
-    @media (max-width: 760px) {
-      .background {
-        background-position: center bottom;
-      }
-
-      .overlay {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(2, 3, 5, 0.94) 0%,
-            rgba(2, 3, 5, 0.79) 38%,
-            rgba(2, 3, 5, 0.42) 67%,
-            rgba(2, 3, 5, 0.52) 100%
-          );
-      }
-
-      .page {
-        width: min(100% - 28px, 1220px);
-      }
-
-      nav {
-        min-height: 72px;
-      }
-
-      main {
-        padding: 54px 0 250px;
-      }
-
-      h1 {
-        font-size: clamp(54px, 15vw, 88px);
-      }
-
-      .intro {
-        max-width: 540px;
-      }
-
-      .worlds {
-        max-width: 500px;
-        margin-top: 34px;
-      }
-
-      footer {
-        min-height: 88px;
-        flex-direction: column;
-        justify-content: center;
-        gap: 8px;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      main {
-        padding-bottom: 220px;
-      }
-
-      h1 {
-        font-size: clamp(49px, 15vw, 72px);
-      }
-
-      .intro {
-        font-size: 16px;
-      }
-
-      .world {
-        padding: 9px 11px;
-        font-size: 10px;
-      }
-
-      .statement {
-        line-height: 1.6;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
+    :root { --bg:#050708; --text:#f7f5f1; --muted:#b7bcc0; --line:rgba(255,255,255,.16); --accent:#ff5038; --accent-soft:#ff7b61; --purple:#d08cff; --cyan:#76d8ff; --green:#66dd91; --pink:#ff7fb2; --max:1180px; --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif; --script:"Caveat",cursive; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; overflow-x:hidden; background:radial-gradient(circle at 75% 0%,rgba(30,58,68,.18),transparent 28%),linear-gradient(180deg,#050708 0%,#070a0c 62%,#030506 100%); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+    body::after { content:""; position:fixed; inset:0; z-index:20; pointer-events:none; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
+    a { color:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    button { font:inherit; }
+    .shell { width:min(var(--max),calc(100% - 48px)); margin:0 auto; }
+    .skip-link { position:fixed; top:10px; left:10px; z-index:99; transform:translateY(-160%); padding:10px 14px; background:#fff; color:#000; border-radius:8px; }
+    .skip-link:focus { transform:translateY(0); }
+    .topbar { position:fixed; inset:0 0 auto; z-index:15; background:linear-gradient(180deg,rgba(2,4,5,.94),rgba(2,4,5,.58) 72%,transparent); transition:.25s ease; }
+    .topbar.scrolled { background:rgba(4,7,8,.86); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { min-height:76px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:24px; }
+    .logo { text-decoration:none; font-weight:700; font-size:clamp(17px,2vw,22px); letter-spacing:-.045em; }
+    .logo-dot { color:var(--accent); }
+    .nav-links { display:flex; align-items:center; gap:clamp(20px,2.7vw,34px); }
+    .nav-links a { position:relative; padding:29px 0 22px; text-decoration:none; color:#d5d7d8; font-size:13px; }
+    .nav-links a::after { content:""; position:absolute; inset:auto 50% 14px; height:2px; width:100%; background:var(--accent); transform:translateX(-50%) scaleX(0); transition:transform .22s ease; }
+    .nav-links a:hover::after,.nav-links a.active::after { transform:translateX(-50%) scaleX(1); }
+    .nav-actions { justify-self:end; display:flex; align-items:center; gap:13px; }
+    .icon-button { width:39px; height:39px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; background:rgba(5,8,9,.42); color:#e4e7e8; cursor:pointer; transition:.2s ease; }
+    .icon-button:hover { transform:translateY(-2px); border-color:rgba(255,80,56,.7); background:rgba(255,80,56,.08); }
+    .menu-button { display:none; }
+    .mobile-nav { position:fixed; inset:76px 18px auto; z-index:14; display:grid; padding:12px; border:1px solid var(--line); border-radius:16px; background:rgba(8,12,14,.97); box-shadow:0 25px 80px rgba(0,0,0,.55); opacity:0; transform:translateY(-12px); pointer-events:none; transition:.2s ease; }
+    .mobile-nav.open { opacity:1; transform:none; pointer-events:auto; }
+    .mobile-nav a { padding:13px 14px; border-radius:10px; text-decoration:none; color:#dfe2e4; }
+    .mobile-nav a:hover { background:rgba(255,255,255,.06); color:white; }
+    .hero { position:relative; min-height:760px; height:min(930px,92vh); display:flex; align-items:center; isolation:isolate; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.07); }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background:url("./assets/hero-road-v2.jpg") 56% center/cover no-repeat; transform:scale(1.015); animation:heroIn 1.8s cubic-bezier(.2,.7,.2,1) both; }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(90deg,rgba(1,3,4,.98) 0%,rgba(1,3,4,.82) 31%,rgba(1,3,4,.24) 65%,rgba(1,3,4,.23) 100%),linear-gradient(180deg,rgba(2,4,5,.6),transparent 24%,transparent 68%,#050708 100%); }
+    .hero-content { width:min(575px,54%); padding-top:78px; position:relative; z-index:2; }
+    .hello { margin:0 0 13px; color:#d5d7d8; font-size:17px; }
+    .hello strong { color:var(--accent); font-weight:600; }
+    .hero h1 { margin:0; max-width:640px; font-family:var(--serif); font-size:clamp(62px,6.25vw,91px); line-height:.94; letter-spacing:-.055em; text-wrap:balance; }
+    .hero h1 span { color:var(--accent); }
+    .signature { position:relative; width:fit-content; margin:18px 0 26px; font:500 clamp(26px,3vw,36px)/1 var(--script); color:#f7f5f1; transform:rotate(-1.5deg); }
+    .signature::after { content:""; display:block; width:72%; height:3px; margin:10px 0 0 5px; background:var(--accent); border-radius:100%; transform:rotate(-5deg); }
+    .hero-copy { max-width:440px; margin:0 0 30px; color:#bec3c6; font-size:15px; line-height:1.62; }
+    .primary-cta { display:inline-flex; align-items:center; gap:34px; padding:14px 19px; border:1px solid rgba(255,80,56,.5); border-radius:9px; background:rgba(6,10,12,.52); text-decoration:none; font-weight:500; font-size:14px; transition:.22s ease; }
+    .primary-cta:hover { transform:translateY(-3px); background:rgba(255,80,56,.12); border-color:var(--accent); }
+    .primary-cta svg { width:17px; height:17px; }
+    .scroll-cue { position:absolute; z-index:3; left:50%; bottom:77px; display:grid; justify-items:center; gap:8px; color:rgba(255,255,255,.72); font-size:11px; transform:translateX(-50%); }
+    .mouse { width:20px; height:32px; border:1px solid rgba(255,255,255,.85); border-radius:999px; display:grid; justify-items:center; padding-top:7px; }
+    .mouse::before { content:""; width:2px; height:7px; background:var(--accent); border-radius:4px; animation:scrollDot 1.7s infinite; }
+    .worlds { padding:10px 0 0; margin-top:-46px; position:relative; z-index:4; scroll-margin-top:90px; }
+    .cards { display:grid; grid-template-columns:1fr .88fr 1.07fr; gap:13px; }
+    .card { position:relative; min-height:300px; overflow:hidden; padding:27px 25px 23px; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:12px; background-color:#0c1114; background-image:var(--card-image); background-size:300% 200%; background-position:var(--card-position); text-decoration:none; box-shadow:0 18px 40px rgba(0,0,0,.22); isolation:isolate; transition:.28s ease; scroll-margin-top:92px; }
+    .card::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(7,10,12,.96),rgba(7,10,12,.74) 48%,rgba(7,10,12,.15)),linear-gradient(0deg,rgba(5,8,9,.66),transparent 55%); }
+    .card:hover { transform:translateY(-5px); border-color:rgba(255,255,255,.35); box-shadow:0 26px 60px rgba(0,0,0,.34); }
+    .work-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:0% 0%; }
+    .music-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:50% 0%; }
+    .travel-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:100% 0%; }
+    .cars-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:0% 100%; }
+    .gym-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:50% 100%; }
+    .love-card { --card-image:url("./assets/worlds-grid.jpg"); --card-position:100% 100%; }
+    .card-kicker { display:flex; align-items:center; gap:9px; margin-bottom:19px; color:#d3d7d8; font-size:11px; letter-spacing:.11em; text-transform:uppercase; }
+    .card-kicker svg { width:18px; height:18px; stroke-width:1.5; }
+    .card h2 { max-width:250px; margin:0 0 14px; font:600 27px/1.06 var(--serif); letter-spacing:-.025em; }
+    .orange { color:var(--accent-soft); } .purple { color:var(--purple); } .cyan { color:var(--cyan); } .green { color:var(--green); } .pink { color:var(--pink); }
+    .card p { max-width:215px; margin:0; color:#c3c7c9; font-size:13.5px; line-height:1.48; }
+    .card-link { margin-top:auto; padding-top:24px; display:flex; align-items:center; gap:18px; color:white; font-size:13px; font-weight:600; }
+    .card-link svg { width:18px; height:18px; transition:transform .2s ease; }
+    .card:hover .card-link svg { transform:translateX(5px); }
+    .connect { margin:14px 0 0; padding:27px 28px; display:grid; grid-template-columns:300px 1fr; align-items:center; gap:28px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(110deg,rgba(12,19,22,.94),rgba(7,12,14,.78)),radial-gradient(circle at 80% 50%,rgba(35,85,101,.22),transparent 40%); scroll-margin-top:90px; }
+    .connect-copy .label { margin:0 0 8px; color:#c3c8ca; font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+    .connect-copy h2 { margin:0 0 8px; font:600 27px/1.06 var(--serif); }
+    .connect-copy h2 span { color:var(--accent-soft); }
+    .connect-copy p { max-width:220px; margin:0; color:#aab1b5; font-size:13px; line-height:1.5; }
+    .socials { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .social { min-width:0; padding:13px 8px; display:grid; justify-items:center; gap:7px; border:1px solid transparent; border-radius:10px; text-decoration:none; text-align:center; transition:.2s ease; }
+    .social:hover { transform:translateY(-4px); border-color:rgba(255,255,255,.15); background:rgba(255,255,255,.045); }
+    .social-mark { width:25px; height:25px; display:grid; place-items:center; font-weight:700; font-size:15px; }
+    .instagram { color:#ff6db2; } .twitter { color:#6ec7ff; } .linkedin { color:#38a8ec; } .email { color:#ff806b; }
+    .social-name { color:#e7e9ea; font-size:12px; }
+    .social-handle { max-width:125px; overflow:hidden; text-overflow:ellipsis; color:#939a9e; font-size:10px; white-space:nowrap; }
+    .footer { min-height:90px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:20px; color:#777f84; font-size:10px; }
+    .footer-quote { font:500 22px/1 var(--script); color:#b5b3ae; }
+    .footer-quote span,.made span { color:var(--accent); }
+    .made { justify-self:end; }
+    body.ember { --accent:#ff7a3d; --accent-soft:#ff9963; }
+    body.ember .hero::after { background:linear-gradient(90deg,rgba(5,2,1,.98),rgba(5,2,1,.82) 31%,rgba(18,7,2,.2) 65%),linear-gradient(180deg,rgba(8,3,1,.55),transparent 30%,#070504 100%); }
+    @keyframes heroIn { from { transform:scale(1.08); filter:brightness(.75); } to { transform:scale(1.015); filter:brightness(1); } }
+    @keyframes scrollDot { 0% { opacity:0; transform:translateY(-1px); } 35% { opacity:1; } 100% { opacity:0; transform:translateY(9px); } }
+    @media (max-width:1000px) { .nav { grid-template-columns:1fr auto; } .nav-links { display:none; } .menu-button { display:grid; } .hero-content { width:min(610px,66%); } .hero::before { background-position:61% center; } .cards { grid-template-columns:repeat(2,1fr); } .connect { grid-template-columns:240px 1fr; } .socials { grid-template-columns:repeat(4,minmax(80px,1fr)); overflow-x:auto; } }
+    @media (max-width:700px) { .shell { width:min(100% - 28px,var(--max)); } .nav { min-height:68px; } .topbar { background:rgba(2,4,5,.78); backdrop-filter:blur(14px); } .mobile-nav { inset-block-start:68px; } .hero { min-height:760px; height:100svh; align-items:flex-start; padding-top:132px; } .hero::before { background-position:67% center; } .hero::after { background:linear-gradient(180deg,rgba(1,3,4,.94),rgba(1,3,4,.72) 44%,rgba(1,3,4,.08) 66%,#050708 100%),linear-gradient(90deg,rgba(1,3,4,.72),rgba(1,3,4,.05)); } .hero-content { width:100%; padding-top:0; } .hello { font-size:15px; } .hero h1 { max-width:470px; font-size:clamp(50px,14vw,72px); } .signature { font-size:27px; } .hero-copy { max-width:365px; font-size:13.5px; } .scroll-cue { display:none; } .worlds { margin-top:-24px; } .cards { grid-template-columns:1fr; } .card { min-height:285px; } .connect { grid-template-columns:1fr; padding:24px 20px; } .connect-copy p { max-width:360px; } .socials { grid-template-columns:repeat(3,1fr); overflow:visible; } .footer { grid-template-columns:1fr; justify-items:center; padding:24px 0; text-align:center; } .made { justify-self:center; } }
+    @media (max-width:420px) { .hero { padding-top:118px; } .hero h1 { font-size:48px; } .hero-copy { max-width:315px; } .socials { grid-template-columns:repeat(2,1fr); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }
   </style>
 </head>
-
 <body>
-  <div class="background"></div>
-  <div class="overlay"></div>
-  <div class="noise"></div>
-
-  <div class="page">
-    <nav>
-      <div class="brand">itsnikhilversee</div>
-
-      <div class="status">
-        <span class="status-dot"></span>
-        entering the verse
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar" id="topbar">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="logo" href="#home" aria-label="itsnikhilversee home">itsnikhilversee<span class="logo-dot">.</span></a>
+      <div class="nav-links"><a class="active" href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a><a href="#journal">Journal</a><a href="#playlists">Playlists</a><a href="#travel">Travel</a><a href="#cars">Cars</a><a href="#contact">Contact</a></div>
+      <div class="nav-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle atmosphere" title="Toggle atmosphere"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 14.4A8 8 0 0 1 9.6 3.5 8.5 8.5 0 1 0 20.5 14.4Z"/></svg></button>
+        <button class="icon-button menu-button" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14M5 12h14M5 16h14"/></svg></button>
       </div>
     </nav>
-
-    <main>
-      <section class="hero">
-        <div class="eyebrow">The internet home of Nikhil Singh</div>
-
-        <h1>
-          Built different.<br />
-          Thinks loud.<br />
-          <span class="highlight">Lives deep.</span>
-        </h1>
-
-        <p class="intro">
-          I like to understand people, build products, play with data
-          and chase experiences that make a good story.
-          <strong>This is where all of it will live.</strong>
-        </p>
-
-        <div class="worlds">
-          <div class="world">Cars</div>
-          <div class="world">Travel</div>
-          <div class="world">Songs</div>
-          <div class="world">Love</div>
-          <div class="world">Psychology</div>
-          <div class="world">Gym</div>
-          <div class="world">Food</div>
-          <div class="world">People</div>
-          <div class="world">Thoughts</div>
-        </div>
-
-        <div class="statement">
-          Jack of all trades. <span>Master of some.</span>
+  </header>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true"><a href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a><a href="#journal">Journal</a><a href="#playlists">Playlists</a><a href="#travel">Travel</a><a href="#cars">Cars</a><a href="#contact">Contact</a></div>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="shell"><div class="hero-content" id="about">
+        <p class="hello">Hey, I’m <strong>Nikhil.</strong></p>
+        <h1>Built different.<br />Thinks loud.<br />Lives <span>deep.</span></h1>
+        <p class="signature">Jack of all trades. Master of some.</p>
+        <p class="hero-copy">Product analyst by profession. Storyteller by obsession.<br />I turn data into decisions and moments into stories.<br />I’m here to learn, create, explore and vibe with amazing people along the way.</p>
+        <a class="primary-cta" href="#worlds">Explore My World <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div></div>
+      <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span><span>Scroll to explore</span></div>
+    </section>
+    <section class="worlds shell" id="worlds" aria-label="Explore Nikhil's world">
+      <div class="cards">
+        <a class="card work-card" id="work" href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Work</div><h2>Turning data<br />into <span class="orange">direction.</span></h2><p>I dive deep into problems, find patterns, and build clarity through data and product thinking.</p><span class="card-link">See my work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+        <a class="card music-card" id="playlists" href="https://open.spotify.com/search/itsnikhilversee" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18V5l10-2v13M6 21c-2 0-3-1-3-2.5S4 16 6 16s3 1 3 2.5S8 21 6 21Zm10-2c-2 0-3-1-3-2.5s1-2.5 3-2.5 3 1 3 2.5S18 19 16 19Z"/></svg>Now playing</div><h2>Songs on<br /><span class="purple">repeat.</span></h2><p>Hip hop. Bollywood.<br />Bas jo feel karaye.</p><span class="card-link">Find my soundtrack <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+        <a class="card travel-card" id="travel" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Travel</div><h2>Collecting<br /><span class="cyan">memories,</span><br />not things.</h2><p>New places.<br />New perspectives.<br />Same curious soul.</p><span class="card-link">See travel stories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+        <a class="card cars-card" id="cars" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m5 11 2-5h10l2 5M4 11h16v7H4zM7 18v2M17 18v2"/><circle cx="7" cy="14.5" r="1"/><circle cx="17" cy="14.5" r="1"/></svg>Cars</div><h2>Four wheels.<br />Pure <span class="orange">emotion.</span></h2><p>Performance, design and the feeling of the open road.</p><span class="card-link">Fuel the obsession <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+        <a class="card gym-card" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10v4M6 7v10M9 9v6M15 9v6M18 7v10M21 10v4M9 12h6"/></svg>Gym &amp; food</div><h2>Discipline in<br />the gym.<br /><span class="green">Happiness</span> on<br />the plate.</h2><p>Stronger body. Better mind.<br />And yes, I love my food.</p><span class="card-link">My favorites <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+        <a class="card love-card" id="journal" href="https://x.com/itsnikhilversee" target="_blank" rel="noreferrer"><div class="card-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 5.7a5.5 5.5 0 0 0-7.8 0L12 6.8l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 22l8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"/></svg>Love &amp; psychology</div><h2>Mind curious.<br /><span class="pink">Heart deeper.</span></h2><p>I overthink, I feel everything, and I still believe in love.</p><span class="card-link">Thoughts &amp; stories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5 7 7-7 7"/></svg></span></a>
+      </div>
+      <section class="connect" id="contact" aria-labelledby="connect-title">
+        <div class="connect-copy"><p class="label">Let’s connect</p><h2 id="connect-title">Good conversations<br />are my <span>love language.</span></h2><p>Say hi, share a story,<br />or just vibe.</p></div>
+        <div class="socials">
+          <a class="social" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noreferrer" aria-label="Nikhil on Instagram"><span class="social-mark instagram">◎</span><span class="social-name">Instagram</span><span class="social-handle">@itsnikhilversee</span></a>
+          <a class="social" href="https://x.com/itsnikhilversee" target="_blank" rel="noreferrer" aria-label="Nikhil on X"><span class="social-mark twitter">𝕏</span><span class="social-name">X / Twitter</span><span class="social-handle">@itsnikhilversee</span></a>
+          <a class="social" href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noreferrer" aria-label="Nikhil on LinkedIn"><span class="social-mark linkedin">in</span><span class="social-name">LinkedIn</span><span class="social-handle">/in/itsnikhilversee</span></a>
+          <a class="social" href="mailto:nikhilsingh77769@gmail.com" aria-label="Email Nikhil"><span class="social-mark email">✉</span><span class="social-name">Email</span><span class="social-handle">nikhilsingh77769@gmail.com</span></a>
         </div>
       </section>
-    </main>
-
-    <footer>
-      <span>© 2026 Nikhil Singh</span>
-
-      <div class="footer-message">
-        Full universe <strong>coming soon</strong>
-      </div>
-    </footer>
-  </div>
+      <footer class="footer"><span>© 2026 itsnikhilversee. All rights reserved.</span><span class="footer-quote">Stay curious. Keep vibing. Love deeply. <span>♡</span></span><span class="made">Made with <span>♡</span> in India</span></footer>
+    </section>
+  </main>
+  <script>
+    const topbar=document.getElementById("topbar"),menuToggle=document.getElementById("menuToggle"),mobileNav=document.getElementById("mobileNav"),themeToggle=document.getElementById("themeToggle");
+    function closeMenu(){mobileNav.classList.remove("open");mobileNav.setAttribute("aria-hidden","true");menuToggle.setAttribute("aria-expanded","false");}
+    menuToggle.addEventListener("click",()=>{const open=!mobileNav.classList.contains("open");mobileNav.classList.toggle("open",open);mobileNav.setAttribute("aria-hidden",String(!open));menuToggle.setAttribute("aria-expanded",String(open));});
+    mobileNav.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu();});
+    window.addEventListener("scroll",()=>topbar.classList.toggle("scrolled",window.scrollY>24),{passive:true});
+    themeToggle.addEventListener("click",()=>{document.body.classList.toggle("ember");themeToggle.setAttribute("aria-pressed",String(document.body.classList.contains("ember")));});
+    const sections=[...document.querySelectorAll("#home,#about,#work,#journal,#playlists,#travel,#cars,#contact")],desktopLinks=[...document.querySelectorAll(".nav-links a")];
+    const observer=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;desktopLinks.forEach(link=>link.classList.toggle("active",link.getAttribute("href")===`#${visible.target.id}`));},{rootMargin:"-35% 0px -55%",threshold:[0,.25,.6]});
+    sections.forEach(section=>observer.observe(section));
+  </script>
 </body>
 </html>
