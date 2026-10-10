@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#050706">
-  <meta name="description" content="Take the passenger seat and ride through Nikhil Singh's cities, work, obsessions, people, and unfinished thoughts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a09">
+  <meta name="description" content="Come for a drive through Nikhil Singh's work, cities, obsessions, people, and unfinished thoughts.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://itsnikhilversee.in/">
-  <meta property="og:title" content="Nikhil Singh — come for a ride">
-  <meta property="og:description" content="Get in. Pick a side of my life. We will drive there.">
+  <meta property="og:title" content="Nikhil Singh — come for a drive">
+  <meta property="og:description" content="The road, the radio, the work, and everything carried along the way.">
   <meta property="og:image" content="https://itsnikhilversee.in/assets/social-card.png">
-  <title>Nikhil Singh — Come for a ride</title>
+  <title>Nikhil Singh — Come for a drive</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,81 +22,128 @@
   <script type="module" src="/assets/road-scene.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#drive">Skip to the drive</a>
+
   <section class="door" id="door" aria-labelledby="doorTitle">
     <div class="door-grain" aria-hidden="true"></div>
-    <header><p>Nikhil Singh</p><span>Passenger 01 · Bengaluru</span></header>
+    <p class="door-name">Nikhil Singh</p>
     <div class="door-copy">
-      <p class="door-kicker">One seat is empty</p>
-      <h1 id="doorTitle">Come for<br><em>a ride?</em></h1>
-      <button class="enter-drive" id="enterDrive" type="button"><span>Start the engine</span><i aria-hidden="true">→</i></button>
+      <p class="door-whisper">No pitch. No guided tour.</p>
+      <h1 id="doorTitle">Come for<br><em>a drive?</em></h1>
+      <button class="enter-drive" id="enterDrive" type="button"><span>Get in</span><i aria-hidden="true">→</i></button>
     </div>
-    <div class="door-foot"><p>This is experienced, not scrolled.</p><p>Headphones recommended · drag to look around</p></div>
+    <p class="door-foot">A personal corner of the internet · Bengaluru, 2026</p>
   </section>
 
-  <main class="drive" id="drive" aria-hidden="true" data-state="waiting">
-    <div class="world" aria-hidden="true">
-      <div class="world-fallback"></div>
-      <canvas id="roadCanvas"></canvas>
-      <div class="world-grade"></div>
-      <div class="world-grain"></div>
-    </div>
+  <main class="drive" id="drive" data-scene="drive" aria-hidden="true">
+    <div class="road" aria-hidden="true"><div class="road-image"></div><canvas id="roadCanvas"></canvas><div class="road-speed"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="road-shade"></div><div class="road-grain"></div></div>
 
-    <header class="ride-head">
-      <button class="ns-mark" id="backToPicker" type="button" aria-label="Choose another route">NS</button>
-      <p class="ride-signal"><i></i><span id="rideSignal">ENGINE IDLE</span></p>
-      <p class="ride-location" id="rideLocation">Passenger seat · waiting for you</p>
-      <nav aria-label="Nikhil online"><a href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer">IG</a><a href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer">X</a><a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer">IN</a></nav>
+    <header class="drive-head">
+      <a class="drive-name" href="#drive" data-screen-link="drive">NS</a>
+      <p><span class="live-dot"></span> Passenger mode</p>
+      <p class="drive-place" id="drivePlace">Somewhere between here and next</p>
+      <div class="drive-links"><a href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer">IG</a><a href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer">X</a><a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer">IN</a></div>
     </header>
 
-    <div class="look-hint" id="lookHint" aria-hidden="true"><span>↔</span> drag to look around</div>
+    <div class="rearview" aria-hidden="true"><span></span></div>
 
-    <section class="journey-picker" id="journeyPicker" aria-labelledby="pickerTitle">
-      <div class="picker-screen">
-        <div class="picker-top"><span>NS / NAVIGATION</span><span>CHOOSE A ROUTE</span></div>
-        <p class="picker-eyebrow">Where should we go?</p>
-        <h2 id="pickerTitle">Pick a side<br>of my life.</h2>
-        <div class="route-grid">
-          <button type="button" data-journey="road"><span>01</span><b>The road</b><small>cities · cars · mountains</small><i>8.4 km</i></button>
-          <button type="button" data-journey="engine"><span>02</span><b>The engine</b><small>work · products · ambition</small><i>6.2 km</i></button>
-          <button type="button" data-journey="head"><span>03</span><b>The head</b><small>music · cricket · thoughts</small><i>5.7 km</i></button>
-          <button type="button" data-journey="heart"><span>04</span><b>The heart</b><small>home · maa · people</small><i>7.1 km</i></button>
+    <div class="windshield" id="windshield">
+      <section class="screen screen-drive active" data-screen="drive" aria-labelledby="driveTitle">
+        <p class="screen-label">00 / THE PASSENGER SEAT</p>
+        <h2 id="driveTitle">Where do you<br>want to go <em>first?</em></h2>
+        <p class="screen-intro">I’m Nikhil. You’re in the passenger seat. Pick a side of my life and we’ll start there.</p>
+        <div class="first-destinations" aria-label="Choose the first destination">
+          <button type="button" data-first-target="route"><span>01</span><b>The road</b><small>cities · cars · mountains</small></button>
+          <button type="button" data-first-target="engine"><span>02</span><b>The engine</b><small>work · products · ambition</small></button>
+          <button type="button" data-first-target="radio"><span>03</span><b>The head</b><small>music · cricket · thoughts</small></button>
+          <button type="button" data-first-target="home"><span>04</span><b>The heart</b><small>home · maa · people</small></button>
         </div>
-        <p class="picker-note">I’ll drive. You choose where we begin.</p>
-      </div>
-    </section>
+        <p class="screen-hint">No wrong turn. The console stays open.</p>
+      </section>
 
-    <section class="moment" id="momentCard" hidden aria-live="polite">
-      <div class="moment-photo"><img id="momentImage" src="/assets/nikhil-delhi-view.jpg" alt=""><span id="momentYear">ORIGIN</span></div>
-      <div class="moment-copy">
-        <div class="moment-meta"><span id="momentNumber">01 / 05</span><span id="momentPlace">DELHI</span></div>
-        <p id="momentAside">A note from the passenger seat</p>
-        <h2 id="momentTitle">Home is the place I keep leaving.</h2>
-        <p id="momentText"></p>
-        <div class="moment-actions"><a id="momentLink" href="#" target="_blank" rel="noopener noreferrer">the original memory ↗</a><button id="continueRide" type="button"><span>Keep driving</span><i>→</i></button></div>
-      </div>
-    </section>
+      <section class="screen screen-route" data-screen="route" aria-labelledby="routeTitle" hidden>
+        <div class="screen-topline"><p class="screen-label">01 / ROUTE MEMORY</p><p>DEL → BOM → DEL → BLR</p></div>
+        <div class="route-layout">
+          <div class="route-copy"><h2 id="routeTitle">Every city left<br>something in me.</h2><p>The route looks clean on a map. It didn’t feel clean while living it.</p><figure class="route-visual"><img id="routeImage" src="/assets/nikhil-delhi-view.jpg" alt="Delhi seen through Nikhil's camera"><figcaption id="routeCaption">Home is the place I keep leaving and keep carrying.</figcaption></figure></div>
+          <ol class="route-stops">
+            <li class="route-stop active"><button type="button" data-route-scene="delhi"><span>Origin</span><strong>Delhi</strong><small>maa · first drives · the root</small></button></li>
+            <li class="route-stop"><button type="button" data-route-scene="mumbai"><span>2025</span><strong>Mumbai</strong><small>Dream11 · a city I did not plan to love</small></button></li>
+            <li class="route-stop"><button type="button" data-route-scene="delhi-return"><span>2026</span><strong>Delhi, again</strong><small>returning is its own kind of moving</small></button></li>
+            <li class="route-stop"><button type="button" data-route-scene="bengaluru"><span>Now</span><strong>Bengaluru</strong><small>47 km · 2 hr 22 min · hello</small></button></li>
+          </ol>
+        </div>
+        <div class="ride-bar"><button type="button" id="startRoute"><span>Start the whole route</span><i>→</i></button><p id="routeStatus">Stop 1 of 4 · Delhi</p></div>
+      </section>
 
-    <div class="ride-progress" id="rideProgress" hidden aria-label="Journey progress"></div>
+      <section class="screen screen-engine" data-screen="engine" aria-labelledby="engineTitle" hidden>
+        <div class="screen-topline"><p class="screen-label">02 / ENGINE ROOM</p><p>Observer → owner</p></div>
+        <div class="engine-layout">
+          <div class="engine-copy"><h2 id="engineTitle">Work is where<br>I learned to<br>look closer.</h2><p>I began with problems that called back. Cars, customers, students, referrals, cricket balls, broken workflows. The job kept changing; the instinct didn’t.</p></div>
+          <div class="engine-log">
+            <a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><span>01</span><div><b>GoMechanic</b><small>Real cars. Real consequences. No dashboard could finish the job.</small></div><i>↗</i></a>
+            <a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><span>02</span><div><b>PhysicsWallah</b><small>Numbers with students behind them.</small></div><i>↗</i></a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7477601772543328256/" target="_blank" rel="noopener noreferrer"><span>03</span><div><b>Dream11 + Dream Cricket</b><small>The cricket fan got inside the data.</small></div><i>↗</i></a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7467790924903960576/" target="_blank" rel="noopener noreferrer"><span>04</span><div><b>Things I built anyway</b><small>Eventify, text-to-SQL, and tools born from irritation.</small></div><i>↗</i></a>
+          </div>
+        </div>
+      </section>
 
-    <aside class="radio" id="radio" aria-label="Nikhil's radio">
-      <button class="radio-main" id="toggleRadio" type="button" aria-label="Play Nikhil's radio">
-        <img id="radioArt" src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/52/60/d7/5260d73e-be23-eb0c-9a17-30ffee9fc0f1/cover.jpg/100x100bb.jpg" alt="">
-        <span><small>88.1 · NIKHIL’S RADIO</small><b id="radioTitle">Noormahal</b><em id="radioArtist">Chani Nattan, Inderpal Moga &amp; J-Statik</em></span>
-        <i id="radioState">▶</i>
-      </button>
-      <button class="radio-next" id="nextRadio" type="button" aria-label="Next song">→</button>
-    </aside>
+      <section class="screen screen-radio" data-screen="radio" aria-labelledby="radioTitle" hidden>
+        <div class="screen-topline"><p class="screen-label">03 / RADIO</p><p>Signal changes. Taste stays.</p></div>
+        <div class="radio-layout">
+          <div class="radio-display">
+            <span id="stationNumber">88.1</span><p id="stationKicker">AIRPLANE MODE</p>
+            <div class="track-now"><img id="trackArt" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/400x400bb.jpg" alt="Race album artwork"><div><p>FROM NIKHIL'S LIBRARY</p><h2 id="radioTitle">Pehli Nazar Mein</h2><p id="trackArtist">Atif Aslam &amp; Pritam</p></div></div>
+            <div class="player-controls"><button id="prevTrack" type="button" aria-label="Previous track">←</button><button id="playTrack" class="play-track" type="button" aria-label="Play preview">PLAY</button><button id="nextTrack" type="button" aria-label="Next track">→</button><span><i id="playProgress"></i></span></div>
+            <p id="stationText">Reached home 40 minutes ago. Still sitting in the car because the playlist refuses to end the scene.</p><a id="stationLink" href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer">follow on Apple Music ↗</a>
+          </div>
+          <div class="station-list" role="tablist" aria-label="Playlists from Nikhil's Apple Music library">
+            <p>PLAYLISTS FOUND IN MY MUSIC APP</p>
+            <button class="station active" type="button" role="tab" aria-selected="true" data-playlist="airplane"><span>111 songs</span>AIRPLANE MODE</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="gedi"><span>37 songs</span>GEDI</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="high"><span>34 songs</span>HIGH</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="mix"><span>359 songs</span>Nik’s Mix</button>
+            <small>30-second previews supplied by Apple Music</small>
+          </div>
+        </div>
+      </section>
 
-    <div class="ride-controls">
-      <button id="soundToggle" type="button" aria-label="Mute ambient engine sound"><span>◖</span> sound</button>
-      <button id="recenter" type="button"><span>⌖</span> recenter</button>
-      <button id="vrButton" type="button" hidden><span>◫</span> enter VR</button>
+      <section class="screen screen-glovebox" data-screen="glovebox" aria-labelledby="gloveboxTitle" hidden>
+        <div class="screen-topline"><p class="screen-label">04 / GLOVEBOX</p><p>Things kept without a reason</p></div>
+        <h2 id="gloveboxTitle">Proof that I was here.</h2>
+        <div class="mementos">
+          <a class="memento memento-wide" href="https://x.com/itsnikhilversee/status/2099005667222945858" target="_blank" rel="noopener noreferrer"><img src="/assets/nikhil-aravallis.jpg" alt="Nikhil mixing music outdoors in the Aravallis"><span><b>Aravallis, 7:00 AM</b><small>Accidentally looking booked for an 8 AM set.</small></span></a>
+          <a class="memento" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><img src="/assets/story-portrait.jpg" alt="A personal Instagram story portrait of Nikhil"><span><b>2025</b><small>Wavy hair. Someone liked it that way.</small></span></a>
+          <a class="memento" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><img src="/assets/story-training.jpg" alt="Nikhil flexing after training"><span><b>NIKBEAST</b><small>The body is also a work in progress.</small></span></a>
+          <a class="memento" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><img src="/assets/story-beemer.jpg" alt="A drive seen through Nikhil's Instagram story"><span><b>BEEMER</b><small>I love, breathe cars.</small></span></a>
+          <a class="memento memento-wide" href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><img src="/assets/story-nainital.jpg" alt="Mountain view from Nainital"><span><b>Nainital</b><small>I leave to hear myself again.</small></span></a>
+        </div>
+      </section>
+
+      <section class="screen screen-home" data-screen="home" aria-labelledby="homeTitle" hidden>
+        <p class="screen-label">05 / THE WAY HOME</p>
+        <div class="home-note"><p>Some days I want to go further.</p><h2 id="homeTitle">Some days<br>I want to go <em>home.</em></h2><p>I wanted my own room, my own rules, a life that felt chosen. Then one quiet evening in Bengaluru, I missed having my maa close enough to annoy.</p><a href="https://x.com/itsnikhilversee/status/2108875377791951186" target="_blank" rel="noopener noreferrer">Forever mumma’s boy ↗</a></div>
+      </section>
+
+      <section class="screen screen-signal" data-screen="signal" aria-labelledby="signalTitle" hidden>
+        <p class="screen-label">06 / SEND A SIGNAL</p>
+        <div class="signal-copy"><h2 id="signalTitle">Tell me a song<br>I should hear.</h2><p>Or bring a product problem, a car opinion, a mountain plan, a cricket argument, or a better opening line.</p><a href="mailto:nikhilsingh77769@gmail.com">nikhilsingh77769@gmail.com ↗</a><div><a href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer">X</a><a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer">Apple Music</a></div></div>
+      </section>
     </div>
 
-    <p class="odometer"><span id="tripCount">00000</span> km of becoming</p>
-    <div class="cinema-bars" aria-hidden="true"><i></i><i></i></div>
-  </main>
+    <button class="now-playing" id="miniPlayer" type="button" aria-label="Play Nikhil's radio"><p>Now playing · Nikhil's radio</p><div><img id="miniArt" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/100x100bb.jpg" alt=""><span><b id="miniTitle">Pehli Nazar Mein</b><small id="miniArtist">Atif Aslam &amp; Pritam</small></span><i id="miniState" aria-hidden="true">▶</i></div></button>
+    <div class="dashboard" aria-hidden="true"><div class="wheel"></div><div class="dash-light"></div></div>
 
-  <noscript>This ride needs JavaScript. You can still find Nikhil on <a href="https://www.instagram.com/itsnikhilversee/">Instagram</a>.</noscript>
+    <nav class="console" aria-label="Explore Nikhil's life">
+      <button class="console-button active" type="button" data-target="drive"><span>00</span>drive</button>
+      <button class="console-button" type="button" data-target="route"><span>01</span>route</button>
+      <button class="console-button" type="button" data-target="engine"><span>02</span>engine</button>
+      <button class="console-button" type="button" data-target="radio"><span>03</span>radio</button>
+      <button class="console-button" type="button" data-target="glovebox"><span>04</span>glovebox</button>
+      <button class="console-button" type="button" data-target="home"><span>05</span>home</button>
+      <button class="hazard" type="button" data-target="signal" aria-label="Send Nikhil a signal"><span>△</span></button>
+    </nav>
+    <p class="odometer" aria-label="Site status"><span id="tripCount">00000</span> km of becoming</p>
+  </main>
 </body>
 </html>
