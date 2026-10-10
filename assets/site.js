@@ -1,120 +1,76 @@
-const $ = (selector) => document.querySelector(selector);
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
 
-const menuToggle = $('#menuToggle');
-const navLinks = $('#navLinks');
+const menuButton = $('#menuButton');
+const siteNav = $('#siteNav');
 const closeMenu = () => {
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Open menu');
-  navLinks.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.textContent = 'Menu';
+  siteNav.classList.remove('open');
 };
-
-menuToggle.addEventListener('click', () => {
-  const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  navLinks.classList.toggle('open', open);
+menuButton.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') !== 'true';
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.textContent = open ? 'Close' : 'Menu';
+  siteNav.classList.toggle('open', open);
 });
-navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeMenu();
-});
+$$('a', siteNav).forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
 
-const thoughts = [
-  'A good question can change the whole day.',
-  'Some songs know you before you know yourself.',
-  'There is always one more tab open in my head.',
-  'Maybe the long way around is the story.',
-  'The best ideas usually start with “wait, why?”'
-];
-let thoughtIndex = -1;
-$('#thoughtButton').addEventListener('click', () => {
-  thoughtIndex = (thoughtIndex + 1) % thoughts.length;
-  $('#randomThought').textContent = thoughts[thoughtIndex];
-});
-
-const worlds = {
-  music: {
-    kicker: 'THE SOUNDTRACK', symbol: '♫', number: '01',
-    title: 'Some songs say it first.',
-    text: 'Hip hop, Bollywood, and whatever can carry a mood better than I can explain it.',
-    link: 'Find me on Apple Music', href: 'https://music.apple.com/profile/itsnikhilversee'
-  },
-  cars: {
-    kicker: 'THE OBSESSION', symbol: '↗', number: '02',
-    title: 'Yes, I’ll look back at it.',
-    text: 'The lines, the details, the feeling of going somewhere. Cars are design and possibility in one beautiful object.',
-    link: 'See what catches my eye', href: 'https://www.instagram.com/itsnikhilversee/'
-  },
-  training: {
-    kicker: 'THE DISCIPLINE', symbol: '✳', number: '03',
-    title: 'One more rep. Then another.',
-    text: 'Training gives me a simple promise to keep: show up, do the work, come back tomorrow.',
-    link: 'A little more of my life', href: 'https://www.instagram.com/itsnikhilversee/'
-  },
-  places: {
-    kicker: 'THE WANDERLUST', symbol: '⌁', number: '04',
-    title: 'I like the in-between.',
-    text: 'New streets, unfamiliar turns, and that moment a place starts feeling a little less new.',
-    link: 'See my moments', href: 'https://www.instagram.com/itsnikhilversee/'
-  },
-  people: {
-    kicker: 'THE HEART OF IT', symbol: '♡', number: '05',
-    title: 'The people make the place.',
-    text: 'I like independence. I like conversation. I miss home. All of that can be true at once.',
-    link: 'Read the quieter note', href: '#home'
-  },
-  words: {
-    kicker: 'THE OPEN TABS', symbol: '✎', number: '06',
-    title: 'Sometimes I write it down.',
-    text: 'Questions, half-formed ideas, and lines that arrive before I know what to do with them.',
-    link: 'Read a few thoughts', href: '#words'
-  }
+const routeTargets = { work: '#work', motion: '#timeline', human: '#archive' };
+const routeMessages = {
+  work: 'Starting with the work. The rest of him will interrupt soon enough.',
+  motion: 'Starting with the road. Cities, cars, mountains, then everything underneath.',
+  human: 'Starting with the person. Music, people, home, and the thoughts between.'
 };
-
-const stage = $('#worldStage');
-document.querySelectorAll('.world-control').forEach((button) => {
+$$('.route-choice').forEach((button) => {
   button.addEventListener('click', () => {
-    const key = button.dataset.world;
-    const world = worlds[key];
-    if (!world) return;
-    document.querySelectorAll('.world-control').forEach((control) => {
-      const active = control === button;
-      control.classList.toggle('active', active);
-      control.setAttribute('aria-pressed', String(active));
-    });
-    stage.dataset.world = key;
-    $('#worldKicker').textContent = world.kicker;
-    $('#worldSymbol').textContent = world.symbol;
-    $('#worldWatermark').textContent = world.number;
-    $('#worldTitle').textContent = world.title;
-    $('#worldText').textContent = world.text;
-    $('#worldCount').textContent = `${world.number} — 06`;
-    const link = $('#worldLink');
-    link.firstChild.textContent = `${world.link} `;
-    link.href = world.href;
-    if (world.href.startsWith('#')) {
-      link.removeAttribute('target');
-      link.removeAttribute('rel');
-    } else {
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-    }
+    const route = button.dataset.routeChoice;
+    document.body.dataset.route = route;
+    $$('.route-choice').forEach((choice) => choice.classList.toggle('selected', choice === button));
+    $('#routeStatus').textContent = routeMessages[route];
+    window.setTimeout(() => $(routeTargets[route]).scrollIntoView({ behavior: 'smooth' }), 280);
   });
 });
 
-$('#year').textContent = new Date().getFullYear();
-const progress = $('#scrollProgress');
-let scrolling = false;
-const updateProgress = () => {
-  const distance = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.width = `${distance > 0 ? Math.min(100, window.scrollY / distance * 100) : 0}%`;
-  scrolling = false;
+const channels = {
+  music: { number: '88.1', kicker: 'NOW PLAYING', title: 'The song that refuses to end.', text: 'Sometimes I reach home and sit in the car for forty more minutes because the playlist understands the assignment.', link: 'Open this memory ↗', href: 'https://x.com/itsnikhilversee/status/2081462201479733641' },
+  mountains: { number: '91.7', kicker: 'THE RESET', title: 'I go back to become lighter.', text: 'The mountains do not fix my life. They remove the noise long enough for me to hear the better question.', link: 'Read why I keep going back ↗', href: 'https://x.com/itsnikhilversee/status/2080717938701836336' },
+  training: { number: '96.4', kicker: 'PROGRESSIVE OVERLOAD', title: 'Failure, with a name and a plan.', text: 'In the gym, failing a rep can still mean progress. Life is teaching me to trust the same process when growth is harder to see.', link: 'Read the training note ↗', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7461664315939561472/' },
+  people: { number: '101.9', kicker: 'THE REAL FLEX', title: 'I feel loved.', text: 'Nobody is completely self-made. People give us courage, confidence, memory, and somewhere softer to land.', link: 'Read the Friendship Day note ↗', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7489526646002089985/' },
+  cricket: { number: '107.3', kicker: 'ALWAYS LIVE', title: 'The opinion arrives before the result.', text: 'Cricket was part of the voice before it became part of the work. Match takes, team debates, and the game that never stays only a game.', link: 'Find the unfiltered commentary ↗', href: 'https://x.com/itsnikhilversee' }
 };
-window.addEventListener('scroll', () => {
-  if (!scrolling) {
-    scrolling = true;
-    requestAnimationFrame(updateProgress);
-  }
-}, { passive: true });
+
+$$('.freq').forEach((button) => {
+  button.addEventListener('click', () => {
+    const key = button.dataset.freq;
+    const channel = channels[key];
+    $$('.freq').forEach((item) => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); });
+    const panel = $('#radioPanel');
+    panel.dataset.channel = key;
+    $('#radioNumber').textContent = channel.number;
+    $('#radioKicker').textContent = channel.kicker;
+    $('#radioTitle').textContent = channel.title;
+    $('#radioText').textContent = channel.text;
+    const link = $('#radioLink'); link.textContent = channel.link; link.href = channel.href;
+  });
+});
+
+const cityCards = $$('.city-card');
+cityCards.forEach((card) => {
+  const activate = () => cityCards.forEach((item) => item.classList.toggle('active', item === card));
+  card.addEventListener('mouseenter', activate);
+  card.addEventListener('focusin', activate);
+});
+
+const progressBar = $('#progressBar');
+let scheduled = false;
+const updateProgress = () => {
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = height > 0 ? `${Math.min(100, (window.scrollY / height) * 100)}%` : '0%';
+  scheduled = false;
+};
+window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateProgress); } }, { passive: true });
 window.addEventListener('resize', updateProgress);
+$('#year').textContent = new Date().getFullYear();
 updateProgress();
