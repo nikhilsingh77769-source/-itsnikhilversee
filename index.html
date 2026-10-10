@@ -19,6 +19,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments)}gtag('js',new Date());if(['itsnikhilversee.in','www.itsnikhilversee.in'].includes(location.hostname))gtag('config','G-YRV7RXD71C');</script>
   <script src="/assets/site.js" defer></script>
+  <script type="module" src="/assets/road-scene.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#drive">Skip to the drive</a>
@@ -35,7 +36,7 @@
   </section>
 
   <main class="drive" id="drive" data-scene="drive" aria-hidden="true">
-    <div class="road" aria-hidden="true"><div class="road-image"></div><div class="road-shade"></div><div class="road-grain"></div></div>
+    <div class="road" aria-hidden="true"><div class="road-image"></div><canvas id="roadCanvas"></canvas><div class="road-speed"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="road-shade"></div><div class="road-grain"></div></div>
 
     <header class="drive-head">
       <a class="drive-name" href="#drive" data-screen-link="drive">NS</a>
@@ -63,13 +64,15 @@
       <section class="screen screen-route" data-screen="route" aria-labelledby="routeTitle" hidden>
         <div class="screen-topline"><p class="screen-label">01 / ROUTE MEMORY</p><p>DEL → BOM → DEL → BLR</p></div>
         <div class="route-layout">
-          <div class="route-copy"><h2 id="routeTitle">Every city left<br>something in me.</h2><p>The route looks clean on a map. It didn’t feel clean while living it.</p></div>
+          <div class="route-copy"><h2 id="routeTitle">Every city left<br>something in me.</h2><p>The route looks clean on a map. It didn’t feel clean while living it.</p><figure class="route-visual"><img id="routeImage" src="/assets/nikhil-delhi-view.jpg" alt="Delhi seen through Nikhil's camera"><figcaption id="routeCaption">Home is the place I keep leaving and keep carrying.</figcaption></figure></div>
           <ol class="route-stops">
-            <li class="route-stop active"><button type="button" data-route-scene="delhi"><span>Home</span><strong>Delhi</strong><small>the root · the return</small></button></li>
-            <li class="route-stop"><button type="button" data-route-scene="mumbai"><span>2025–26</span><strong>Mumbai</strong><small>Dream11 · a city I did not plan to love</small></button></li>
+            <li class="route-stop active"><button type="button" data-route-scene="delhi"><span>Origin</span><strong>Delhi</strong><small>maa · first drives · the root</small></button></li>
+            <li class="route-stop"><button type="button" data-route-scene="mumbai"><span>2025</span><strong>Mumbai</strong><small>Dream11 · a city I did not plan to love</small></button></li>
+            <li class="route-stop"><button type="button" data-route-scene="delhi-return"><span>2026</span><strong>Delhi, again</strong><small>returning is its own kind of moving</small></button></li>
             <li class="route-stop"><button type="button" data-route-scene="bengaluru"><span>Now</span><strong>Bengaluru</strong><small>47 km · 2 hr 22 min · hello</small></button></li>
           </ol>
         </div>
+        <div class="ride-bar"><button type="button" id="startRoute"><span>Start the whole route</span><i>→</i></button><p id="routeStatus">Stop 1 of 4 · Delhi</p></div>
       </section>
 
       <section class="screen screen-engine" data-screen="engine" aria-labelledby="engineTitle" hidden>
@@ -88,13 +91,19 @@
       <section class="screen screen-radio" data-screen="radio" aria-labelledby="radioTitle" hidden>
         <div class="screen-topline"><p class="screen-label">03 / RADIO</p><p>Signal changes. Taste stays.</p></div>
         <div class="radio-layout">
-          <div class="radio-display"><span id="stationNumber">88.1</span><p id="stationKicker">ON REPEAT</p><h2 id="radioTitle">The plot continues<br>inside a parked car.</h2><p id="stationText">Reached home 40 minutes ago. Still sitting in the car because the playlist refuses to end the scene.</p><a id="stationLink" href="https://x.com/itsnikhilversee/status/2081462201479733641" target="_blank" rel="noopener noreferrer">the original thought ↗</a></div>
-          <div class="station-list" role="tablist" aria-label="Tune Nikhil's radio">
-            <button class="station active" type="button" role="tab" aria-selected="true" data-station="music"><span>88.1</span>music</button>
-            <button class="station" type="button" role="tab" aria-selected="false" data-station="cars"><span>91.7</span>cars</button>
-            <button class="station" type="button" role="tab" aria-selected="false" data-station="mountains"><span>96.4</span>mountains</button>
-            <button class="station" type="button" role="tab" aria-selected="false" data-station="cricket"><span>101.9</span>cricket</button>
-            <button class="station" type="button" role="tab" aria-selected="false" data-station="people"><span>107.3</span>people</button>
+          <div class="radio-display">
+            <span id="stationNumber">88.1</span><p id="stationKicker">AIRPLANE MODE</p>
+            <div class="track-now"><img id="trackArt" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/400x400bb.jpg" alt="Race album artwork"><div><p>FROM NIKHIL'S LIBRARY</p><h2 id="radioTitle">Pehli Nazar Mein</h2><p id="trackArtist">Atif Aslam &amp; Pritam</p></div></div>
+            <div class="player-controls"><button id="prevTrack" type="button" aria-label="Previous track">←</button><button id="playTrack" class="play-track" type="button" aria-label="Play preview">PLAY</button><button id="nextTrack" type="button" aria-label="Next track">→</button><span><i id="playProgress"></i></span></div>
+            <p id="stationText">Reached home 40 minutes ago. Still sitting in the car because the playlist refuses to end the scene.</p><a id="stationLink" href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer">follow on Apple Music ↗</a>
+          </div>
+          <div class="station-list" role="tablist" aria-label="Playlists from Nikhil's Apple Music library">
+            <p>PLAYLISTS FOUND IN MY MUSIC APP</p>
+            <button class="station active" type="button" role="tab" aria-selected="true" data-playlist="airplane"><span>111 songs</span>AIRPLANE MODE</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="gedi"><span>37 songs</span>GEDI</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="high"><span>34 songs</span>HIGH</button>
+            <button class="station" type="button" role="tab" aria-selected="false" data-playlist="mix"><span>359 songs</span>Nik’s Mix</button>
+            <small>30-second previews supplied by Apple Music</small>
           </div>
         </div>
       </section>
@@ -122,7 +131,7 @@
       </section>
     </div>
 
-    <aside class="now-playing" aria-label="Currently playing"><p>Now playing</p><div><span class="album">NS</span><span><b>life, unfinished</b><small>Nikhil Singh</small></span><i aria-hidden="true">Ⅱ</i></div></aside>
+    <button class="now-playing" id="miniPlayer" type="button" aria-label="Play Nikhil's radio"><p>Now playing · Nikhil's radio</p><div><img id="miniArt" src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/38/44/21/384421ca-69a0-83f2-0a34-88653d45db97/100x100bb.jpg" alt=""><span><b id="miniTitle">Pehli Nazar Mein</b><small id="miniArtist">Atif Aslam &amp; Pritam</small></span><i id="miniState" aria-hidden="true">▶</i></div></button>
     <div class="dashboard" aria-hidden="true"><div class="wheel"></div><div class="dash-light"></div></div>
 
     <nav class="console" aria-label="Explore Nikhil's life">
