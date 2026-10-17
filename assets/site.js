@@ -1,41 +1,76 @@
-const $=(s,p=document)=>p.querySelector(s),$$=(s,p=document)=>[...p.querySelectorAll(s)];
-const world=$('#world'),prologue=$('#prologue'),journey=$('#journey'),loader=$('#loader'),artifactWrap=$('#artifactWrap');
-const beats=[
-{step:'00',label:'Passenger seat',marker:'0 KM',place:'THE BEGINNING',kicker:'00 · THE PASSENGER SEAT',title:'No clean timeline.<br><em>Just things I carry.</em>',body:'You asked for the whole story. So we’re taking the long way.',voice:'Tell me if the music is too loud.',cta:'Start driving',type:'ticket'},
-{step:'01',label:'Delhi',marker:'DEL',place:'HOME / ORIGIN',kicker:'01 · DELHI · THE ROOT',title:'Every road starts<br><em>at home.</em>',body:'Delhi gave me my first drives, oldest friends, loudest opinions—and maa close enough to call before I realised I was late.',voice:'I wanted my own room for years. Funny how quiet it felt when I finally got one.',cta:'Answer the call',type:'call'},
-{step:'02',label:'Cars',marker:'2019 → ∞',place:'THE OBSESSION',kicker:'02 · CARS · BEFORE THE BADGE',title:'The shape came<br><em>before the specs.</em>',body:'A Cruze made cars personal. The black F82 became the poster on the wall that refused to stay a poster.',voice:'I love, breathe cars. Yes, I know that sounds dramatic.',cta:'Let it rev',type:'cars'},
-{step:'03',label:'Work',marker:'DELHI',place:'GOMECHANIC → PW',kicker:'03 · WORK · LOOK CLOSER',title:'The real world<br><em>ruined neat answers.</em>',body:'Garages, customers and students taught me that every clean metric has a messy human story underneath it.',voice:'The interesting problem is usually hiding behind the obvious one.',cta:'Follow the signal',type:'work'},
-{step:'04',label:'Mumbai',marker:'BOM',place:'DREAM11 · 2025',kicker:'04 · MUMBAI · THE DETOUR',title:'I didn’t plan<br><em>to love this city.</em>',body:'Then the cricket fan got inside the product. Dream11 turned every ball into a question I could chase.',voice:'Mumbai happened fast. Maybe that’s why it stayed with me.',cta:'Cross the sea link',type:'mumbai'},
-{step:'05',label:'2 AM',marker:'02:13',place:'PARKED / STILL PLAYING',kicker:'05 · THE CAR IS HOME',title:'Some drives end<br><em>when the song does.</em>',body:'Reached home forty minutes ago. Still in the car. The playlist has not released me yet.',voice:'This one played 154 times. That is either taste or a cry for help.',cta:'Drive till it ends',type:'music'},
-{step:'06',label:'People',marker:'ALL CITIES',place:'PEOPLE-MADE',kicker:'06 · THE PEOPLE IN ME',title:'I am not<br><em>self-made.</em>',body:'Friends carried versions of me I could not carry alone. Every city left at least one person inside the way I think.',voice:'The honest version of my story has other names in every chapter.',cta:'Keep their photos',type:'people'},
-{step:'07',label:'Bengaluru',marker:'BLR',place:'47 KM · 2H 22M',kicker:'07 · BENGALURU · NOW',title:'Hello, traffic.<br><em>Hello, possibility.</em>',body:'The newest pin arrived with a ridiculous commute, a window seat, and no neat promise about what comes next.',voice:'New city. Same playlist. Different version of me driving.',cta:'Leave the city',type:'bengaluru'},
-{step:'08',label:'Mountains',marker:'UPHILL',place:'SIGNAL FADING',kicker:'08 · MOUNTAINS · QUIET MODE',title:'I leave to hear<br><em>myself again.</em>',body:'Aravallis at 7 AM. Jibhi offline. Nainital in the rear-view. Distance separates the noise from the signal.',voice:'No strategy up here. That is the point.',cta:'Take the final bend',type:'mountains'},
-{step:'09',label:'Now',marker:'NOW',place:'STILL BECOMING',kicker:'09 · NO END CARD',title:'We’ve arrived.<br><em>Sort of.</em>',body:'There is no finished version waiting at the viewpoint. Just more road, better questions, and one seat still open.',voice:'Next time, you pick the route.',cta:'Open the glovebox',type:'end'}];
-const garageNotes={car:{kicker:'OBJECT 01 · ALWAYS',title:'The Beemer',text:'The F82 is the dream in gloss black. The obsession began long before the badge.'},map:{kicker:'OBJECT 02 · STILL OPEN',title:'The route',text:'Delhi → Mumbai → Delhi → Bengaluru. A clean line for a very unclean becoming.'},music:{kicker:'OBJECT 03 · ON REPEAT',title:'Noormahal',text:'154 plays. Some moods deserve data.'}};
-const tracks=[{title:'Noormahal',artist:'Chani Nattan · Inderpal Moga · J-Statik',plays:'154 plays',preview:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cd/a5/7b/cda57bd2-cb15-e353-a286-cac178358ada/mzaf_16031356656396228544.plus.aac.p.m4a',apple:'https://music.apple.com/in/album/noormahal/1702861400?i=1702861786'},{title:'BLACK RIDE',artist:'Dhanda Nyoliwala · Hammy Muzic',plays:'130 plays',preview:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0c/9f/ea/0c9fea94-29e9-0ff3-eb10-c388711ed976/mzaf_9606923577355059215.plus.aac.p.m4a',apple:'https://music.apple.com/in/album/black-ride/1842580772?i=1842580773'},{title:'Pehli Nazar Mein',artist:'Atif Aslam · Pritam',plays:'92 plays',preview:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0d/db/cf/0ddbcf31-22d7-088e-c71f-1dd88a3dd8a2/mzaf_16563349538675654632.plus.aac.p.m4a',apple:'https://music.apple.com/in/album/pehli-nazar-mein/1537030727?i=1537031094'}];
-let beat=0,locked=false,trackIndex=0,wheelLock=false,dragStart=null;const audio=new Audio();audio.preload='none';
-const sceneImages=['','/assets/nikhil-delhi-view.jpg','/assets/story-beemer.jpg','/assets/hero-road-v2.jpg','/assets/nikhil-mumbai-skyline.jpg','/assets/nikhil-car-playlist.jpg','/assets/story-portrait.jpg','/assets/nikhil-bengaluru-board.jpg','/assets/story-jibhi.jpg',''];
-const artifacts={
-ticket:()=>'<div class="artifact artifact-ticket"><p>PASSENGER 01</p><h3>THE LONG WAY</h3><div><span>FROM</span><b>HERE</b><span>TO</span><b>STILL BECOMING</b></div><small>VALID FOR ONE UNFINISHED STORY</small></div>',
-call:()=>'<div class="artifact artifact-call"><div class="call-avatar">M</div><small>INCOMING CALL</small><h3>Maa</h3><div class="call-actions"><button type="button" data-call="decline">×</button><button type="button" data-call="answer">↗</button></div><p class="call-caption">“Khana kha liya?” — home, in three words.</p></div>',
-cars:()=>'<div class="artifact artifact-polaroids"><a class="polaroid" href="https://x.com/itsnikhilversee/status/2091462322569269382" target="_blank" rel="noopener"><img src="/assets/story-beemer.jpg" alt="A car memory from Nikhil"><b>The Cruze years</b><small>where it became personal</small></a><div class="polaroid"><img src="/assets/bmw-m4-f82.png" alt="Black BMW M4 F82"><b>The F82</b><small>the inevitable co-star</small></div></div>',
-work:()=>'<div class="artifact artifact-work"><a class="work-slip" href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener"><span>01 · GOMECHANIC</span><h3>Real cars.<br>Real consequences.</h3><p>No dashboard could finish the job.</p></a><a class="work-slip" href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener"><span>02 · PHYSICSWALLAH</span><h3>Numbers with students behind them.</h3></a><a class="work-slip" href="https://www.linkedin.com/feed/update/urn:li:activity:7467790924903960576/" target="_blank" rel="noopener"><span>BUILT AFTER HOURS</span><h3>Eventify · text-to-SQL · tools born from irritation.</h3></a></div>',
-mumbai:()=>'<a class="artifact artifact-city" href="https://www.linkedin.com/feed/update/urn:li:activity:7477601772543328256/" target="_blank" rel="noopener"><img src="/assets/nikhil-mumbai-skyline.jpg" alt="Mumbai skyline from Nikhil’s time there"><h3>Mumbai, Dream11, and the chapter I did not plan.</h3><p>OPEN THE DREAM CRICKET STORY ↗</p></a>',
-music:()=>'<div class="artifact artifact-cassette"><div class="tape-label"><b>AIRPLANE MODE</b><small>NIK’S SIDE A · 111 SONGS</small></div><div class="tape-reels"><i></i><i></i></div><p class="tape-now"><span>NOW PLAYING · NOORMAHAL</span><button class="tape-play" type="button" data-open-radio>OPEN RADIO</button></p></div>',
-people:()=>'<div class="artifact artifact-people"><div class="people-photo"><img src="/assets/story-portrait.jpg" alt="A portrait from Nikhil’s camera roll"><b>Versions of me</b></div><div class="people-photo"><img src="/assets/story-nainital.jpg" alt="A mountain memory"><b>Places we went</b></div><a class="people-note" href="https://www.linkedin.com/feed/update/urn:li:activity:7489526646002089985/" target="_blank" rel="noopener">“I am people-made.” ↗</a></div>',
-bengaluru:()=>'<div class="artifact artifact-receipt"><p>NEW CITY RECEIPT</p><h3>BENGALURU</h3><div class="receipt-row"><span>DISTANCE</span><b>47 KM</b></div><div class="receipt-row"><span>TIME</span><b>2H 22M</b></div><div class="receipt-row"><span>STATUS</span><b>STILL MOVING</b></div><strong>Hello, Bengaluru.</strong></div>',
-mountains:()=>'<a class="artifact artifact-mountain" href="https://x.com/itsnikhilversee/status/2099005667222945858" target="_blank" rel="noopener"><img src="/assets/nikhil-aravallis.jpg" alt="Nikhil in the Aravallis at sunrise"><h3>Aravallis · 7:00 AM</h3><p>ACCIDENTALLY BOOKED FOR AN 8 AM SET ↗</p></a>',
-end:()=>'<div class="artifact artifact-end"><p>TRIP COMPLETE · PERSON INCOMPLETE</p><h3>The ending stays open.</h3><small>There are more posts, songs, builds, people and half-finished thoughts in the glovebox.</small><div class="end-actions"><button type="button" data-open-glovebox>Open glovebox</button><a href="mailto:nikhilsingh77769@gmail.com">Send a signal</a></div></div>'};
-function renderSteps(){const steps=$('#routeSteps');steps.innerHTML=beats.map((b,i)=>'<li><button type="button" data-step="'+i+'">'+b.label+'</button></li>').join('');$$('[data-step]',steps).forEach(b=>b.addEventListener('click',()=>goTo(Number(b.dataset.step))))}
-function bindArtifact(){$$('[data-open-radio]',artifactWrap).forEach(b=>b.addEventListener('click',openRadio));$$('[data-open-glovebox]',artifactWrap).forEach(b=>b.addEventListener('click',()=>$('#glovebox').hidden=false));$$('[data-call]',artifactWrap).forEach(b=>b.addEventListener('click',()=>{if(b.dataset.call==='answer'){$('#beatVoice').textContent='Haan maa, kha liya. I’ll call when I reach.';b.closest('.artifact-call').querySelector('.call-caption').textContent='The road can wait. This call cannot.'}else goTo(beat+1)}))}
-function goTo(index,fast=false){if(locked)return;index=Math.max(0,Math.min(beats.length-1,index));if(index===beat&&!fast)return;locked=true;const forward=index>beat;journey.classList.add('turning');$('.story-copy').classList.add('changing');artifactWrap.classList.add('changing');setTimeout(()=>{beat=index;const b=beats[beat];world.dataset.beat=String(beat);$('#beatKicker').textContent=b.kicker;$('#beatTitle').innerHTML=b.title;$('#beatBody').textContent=b.body;$('#beatVoice').textContent=b.voice;$('#markerSmall').textContent=b.marker;$('#markerBig').textContent=b.place;$('#nextBeat span').textContent=b.cta;$('#prevBeat').disabled=beat===0;$('#routeFill').style.width=beat/(beats.length-1)*100+'%';$('#tripText').textContent='Turn '+String(beat+1).padStart(2,'0')+' of '+beats.length;artifactWrap.innerHTML=artifacts[b.type]();bindArtifact();$$('[data-step]').forEach((el,i)=>{el.classList.toggle('active',i===beat);el.classList.toggle('done',i<beat)});$('#passengerChoice').hidden=beat!==0;const light=$('#memoryLight');light.style.backgroundImage=sceneImages[beat]?"url('"+sceneImages[beat]+"')":'none';light.style.opacity=sceneImages[beat]?(beat===9?'.22':'.32'):'0';$('.journey-bg').style.backgroundPosition=(48+beat%4*2)+'% center';$('.story-copy').classList.remove('changing');artifactWrap.classList.remove('changing');journey.classList.remove('turning');locked=false;if(!fast)history.replaceState(null,'','#turn-'+(beat+1))},forward?430:260)}
-function begin(){world.classList.add('changing');$('#cutLine').textContent='Seat belt?';setTimeout(()=>{prologue.hidden=true;journey.hidden=false;world.dataset.mode='journey';$('#whereText').textContent='Passenger seat · route open';renderSteps();goTo(0,true)},850);setTimeout(()=>world.classList.remove('changing'),1750)}
-$('#startJourney').addEventListener('click',begin);$('#goHome').addEventListener('click',()=>{journey.hidden=true;prologue.hidden=false;world.dataset.mode='prologue';$('#whereText').textContent='Somewhere in the hills';history.replaceState(null,'',location.pathname)});
-$('#nextBeat').addEventListener('click',()=>{if(beat===beats.length-1)$('#glovebox').hidden=false;else goTo(beat+1)});$('#prevBeat').addEventListener('click',()=>goTo(beat-1));$$('[data-choice]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.choice==='music')openRadio();else goTo(1)}));
-$$('[data-garage]').forEach(b=>b.addEventListener('click',()=>{const n=garageNotes[b.dataset.garage];$('#garageNoteKicker').textContent=n.kicker;$('#garageNoteTitle').textContent=n.title;$('#garageNoteText').textContent=n.text;$('#garageNote').hidden=false}));$('#closeGarageNote').addEventListener('click',()=>$('#garageNote').hidden=true);
-function openRadio(){$('#radio').hidden=false}$('#closeRadio').addEventListener('click',()=>$('#radio').hidden=true);$('#openRadio').addEventListener('click',()=>{$('#glovebox').hidden=true;openRadio()});$('#closeGlovebox').addEventListener('click',()=>$('#glovebox').hidden=true);
-function renderTrack(auto=false){const t=tracks[trackIndex];audio.src=t.preview;$('#radioTitle').textContent=t.title;$('#trackArtist').textContent=t.artist;$('#playCount').textContent=t.plays;$('#appleLink').href=t.apple;$('#audioProgress').style.width='0%';if(auto)audio.play().catch(()=>{});else setPlaying(false)}function setPlaying(on=!audio.paused){world.classList.toggle('music-playing',on);$('#playTrack').textContent=on?'PAUSE':'PLAY';$('#soundButton span').textContent=on?'on':'off'}function toggleAudio(){if(audio.paused)audio.play().catch(()=>{});else audio.pause()}function stepTrack(d){trackIndex=(trackIndex+d+tracks.length)%tracks.length;renderTrack(true)}$('#playTrack').addEventListener('click',toggleAudio);$('#soundButton').addEventListener('click',()=>{openRadio();toggleAudio()});$('#prevTrack').addEventListener('click',()=>stepTrack(-1));$('#nextTrack').addEventListener('click',()=>stepTrack(1));audio.addEventListener('play',()=>setPlaying(true));audio.addEventListener('pause',()=>setPlaying(false));audio.addEventListener('ended',()=>stepTrack(1));audio.addEventListener('timeupdate',()=>{$('#audioProgress').style.width=(audio.duration?audio.currentTime/audio.duration*100:0)+'%'});
-journey.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<18||wheelLock)return;wheelLock=true;goTo(beat+(e.deltaY>0?1:-1));setTimeout(()=>wheelLock=false,850)},{passive:true});journey.addEventListener('pointerdown',e=>dragStart=e.clientX);journey.addEventListener('pointerup',e=>{if(dragStart===null)return;const d=e.clientX-dragStart;if(Math.abs(d)>60)goTo(beat+(d<0?1:-1));dragStart=null});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')goTo(beat+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')goTo(beat-1);if(e.key==='Escape'){if(!$('#radio').hidden)$('#radio').hidden=true;else if(!$('#glovebox').hidden)$('#glovebox').hidden=true;else if(!$('#garageNote').hidden)$('#garageNote').hidden=true}});
-if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches)window.addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5)*2,y=(e.clientY/innerHeight-.5)*2;$$('.depth').forEach(el=>{if(el.closest('[hidden]'))return;const d=Number(el.dataset.depth||.2);el.style.transform='translate3d('+(x*d*-12)+'px,'+(y*d*-8)+'px,0) scale(1.02)'})});
-window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('done'),500));setTimeout(()=>loader.classList.add('done'),2500);renderTrack();
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+const menuButton = $('#menuButton');
+const siteNav = $('#siteNav');
+const closeMenu = () => {
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.textContent = 'Menu';
+  siteNav.classList.remove('open');
+};
+menuButton.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') !== 'true';
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.textContent = open ? 'Close' : 'Menu';
+  siteNav.classList.toggle('open', open);
+});
+$$('a', siteNav).forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+
+const routeTargets = { work: '#work', motion: '#timeline', human: '#archive' };
+const routeMessages = {
+  work: 'Starting with the work. The rest of him will interrupt soon enough.',
+  motion: 'Starting with the road. Cities, cars, mountains, then everything underneath.',
+  human: 'Starting with the person. Music, people, home, and the thoughts between.'
+};
+$$('.route-choice').forEach((button) => {
+  button.addEventListener('click', () => {
+    const route = button.dataset.routeChoice;
+    document.body.dataset.route = route;
+    $$('.route-choice').forEach((choice) => choice.classList.toggle('selected', choice === button));
+    $('#routeStatus').textContent = routeMessages[route];
+    window.setTimeout(() => $(routeTargets[route]).scrollIntoView({ behavior: 'smooth' }), 280);
+  });
+});
+
+const channels = {
+  music: { number: '88.1', kicker: 'NOW PLAYING', title: 'The song that refuses to end.', text: 'Sometimes I reach home and sit in the car for forty more minutes because the playlist understands the assignment.', link: 'Open this memory ↗', href: 'https://x.com/itsnikhilversee/status/2081462201479733641' },
+  mountains: { number: '91.7', kicker: 'THE RESET', title: 'I go back to become lighter.', text: 'The mountains do not fix my life. They remove the noise long enough for me to hear the better question.', link: 'Read why I keep going back ↗', href: 'https://x.com/itsnikhilversee/status/2080717938701836336' },
+  training: { number: '96.4', kicker: 'PROGRESSIVE OVERLOAD', title: 'Failure, with a name and a plan.', text: 'In the gym, failing a rep can still mean progress. Life is teaching me to trust the same process when growth is harder to see.', link: 'Read the training note ↗', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7461664315939561472/' },
+  people: { number: '101.9', kicker: 'THE REAL FLEX', title: 'I feel loved.', text: 'Nobody is completely self-made. People give us courage, confidence, memory, and somewhere softer to land.', link: 'Read the Friendship Day note ↗', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7489526646002089985/' },
+  cricket: { number: '107.3', kicker: 'ALWAYS LIVE', title: 'The opinion arrives before the result.', text: 'Cricket was part of the voice before it became part of the work. Match takes, team debates, and the game that never stays only a game.', link: 'Find the unfiltered commentary ↗', href: 'https://x.com/itsnikhilversee' }
+};
+
+$$('.freq').forEach((button) => {
+  button.addEventListener('click', () => {
+    const key = button.dataset.freq;
+    const channel = channels[key];
+    $$('.freq').forEach((item) => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); });
+    const panel = $('#radioPanel');
+    panel.dataset.channel = key;
+    $('#radioNumber').textContent = channel.number;
+    $('#radioKicker').textContent = channel.kicker;
+    $('#radioTitle').textContent = channel.title;
+    $('#radioText').textContent = channel.text;
+    const link = $('#radioLink'); link.textContent = channel.link; link.href = channel.href;
+  });
+});
+
+const cityCards = $$('.city-card');
+cityCards.forEach((card) => {
+  const activate = () => cityCards.forEach((item) => item.classList.toggle('active', item === card));
+  card.addEventListener('mouseenter', activate);
+  card.addEventListener('focusin', activate);
+});
+
+const progressBar = $('#progressBar');
+let scheduled = false;
+const updateProgress = () => {
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = height > 0 ? `${Math.min(100, (window.scrollY / height) * 100)}%` : '0%';
+  scheduled = false;
+};
+window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateProgress); } }, { passive: true });
+window.addEventListener('resize', updateProgress);
+$('#year').textContent = new Date().getFullYear();
+updateProgress();
