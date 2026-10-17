@@ -63,6 +63,23 @@ cityCards.forEach((card) => {
   card.addEventListener('focusin', activate);
 });
 
+const chapterLinks = $$('.chapter-rail a');
+if ('IntersectionObserver' in window) {
+  const chapterObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    chapterLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${visible.target.id}`;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-20% 0px -65%', threshold: [0, .2, .5] });
+  ['timeline', 'work', 'road', 'archive', 'notes', 'hello'].forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) chapterObserver.observe(section);
+  });
+}
+
 const progressBar = $('#progressBar');
 let scheduled = false;
 const updateProgress = () => {
