@@ -20,7 +20,7 @@
 .city-card[data-city=delhi]:before{background-image:url('/assets/delhi-india-gate-night.jpg');background-position:center 54%}
 .city-card[data-city=mumbai]:before{background-image:url('/assets/nikhil-mumbai-skyline.jpg')}
 .city-card[data-city=delhi-again]:before{background-image:url('/assets/delhi-connaught-place-night.jpg');background-position:center 60%}
-.city-card[data-city=bengaluru]:before{background-image:url('/assets/bengaluru-night-skyline.jpg');background-position:center 53%}
+.city-card[data-city=bengaluru]:before{background-image:url('/assets/bengaluru-night-traffic.jpg');background-position:center 52%}
 .city-card:hover:before,.city-card.active:before{transform:scale(1.06);filter:saturate(1.12)}
 .city-card h3{margin-top:28px}
 .road-image{background:linear-gradient(90deg,rgba(0,0,0,.1) 20%,rgba(0,0,0,.25)),linear-gradient(0deg,#060606 0%,transparent 65%),url('/assets/nikhil-car-playlist.jpg') center 43%/cover}
