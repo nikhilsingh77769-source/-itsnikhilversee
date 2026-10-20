@@ -11,6 +11,20 @@
   <meta property="og:description" content="A night drive through the cities, work, people, music, mountains, and memories that made me.">
   <meta property="og:image" content="https://itsnikhilversee.in/assets/social-card.png">
   <title>Nikhil Singh — From the passenger seat</title>
+  <script>
+    (() => {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      const navigation = performance.getEntriesByType('navigation')[0];
+      const isReload = navigation ? navigation.type === 'reload' : performance.navigation?.type === 1;
+      if (!isReload) return;
+      if (location.hash) history.replaceState(null, '', `${location.pathname}${location.search}`);
+      const resetScroll = () => window.scrollTo(0, 0);
+      resetScroll();
+      window.addEventListener('DOMContentLoaded', resetScroll, { once: true });
+      window.addEventListener('load', resetScroll, { once: true });
+      window.addEventListener('pageshow', resetScroll, { once: true });
+    })();
+  </script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
