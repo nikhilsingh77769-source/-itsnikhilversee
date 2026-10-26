@@ -3,281 +3,136 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a0a">
-  <meta name="description" content="Nikhil Singh, from the passenger seat. A night drive through cities, work, people, music, mountains, and home.">
+  <meta name="theme-color" content="#e4e6e4">
+  <link rel="canonical" href="https://itsnikhilversee.in/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://itsnikhilversee.in/">
-  <meta property="og:title" content="Nikhil Singh — From the passenger seat">
-  <meta property="og:description" content="A night drive through the cities, work, people, music, mountains, and memories that made me.">
-  <meta property="og:image" content="https://itsnikhilversee.in/assets/social-card.png">
-  <title>Nikhil Singh — From the passenger seat</title>
-  <script>
-    (() => {
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      const navigation = performance.getEntriesByType('navigation')[0];
-      const isReload = navigation ? navigation.type === 'reload' : performance.navigation?.type === 1;
-      if (!isReload) return;
-      if (location.hash) history.replaceState(null, '', `${location.pathname}${location.search}`);
-      const resetScroll = () => window.scrollTo(0, 0);
-      resetScroll();
-      window.addEventListener('DOMContentLoaded', resetScroll, { once: true });
-      window.addEventListener('load', resetScroll, { once: true });
-      window.addEventListener('pageshow', resetScroll, { once: true });
-    })();
-  </script>
+  <meta property="og:title" content="Nikhil Singh — The long way home">
+  <meta property="og:description" content="A few cities. A lot of side quests. A personal journal by Nikhil Singh, still in motion.">
+  <meta property="og:image" content="https://itsnikhilversee.in/assets/social-card-long-way-home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="The long way home. A personal journal by Nikhil Singh, still in motion.">
+  <title>Nikhil Singh — The long way home</title>
+  <script>if('scrollRestoration'in history)history.scrollRestoration='manual';if(performance.getEntriesByType('navigation')[0]?.type==='reload'){history.replaceState(null,'',location.pathname+location.search);window.scrollTo(0,0)}</script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/demo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/mountain-dusk.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="game.css">
+  <script src="assets/gsap.min.js" defer></script>
+  <script src="assets/ScrollTrigger.min.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="game.js" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRV7RXD71C"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());if(['itsnikhilversee.in','www.itsnikhilversee.in'].includes(location.hostname))gtag('config','G-YRV7RXD71C');</script>
-  <script src="assets/demo.js" defer></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());if(['itsnikhilversee.in','www.itsnikhilversee.in'].includes(location.hostname))gtag('config','G-YRV7RXD71C');</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to the story</a>
-  <div class="page-progress" aria-hidden="true"><span id="pageProgress"></span></div>
-
-  <header class="topbar" id="top">
-    <a class="wordmark" href="#top" aria-label="Nikhil Singh, home">
-      <strong>Nikhil</strong>
-      <span>Passenger seat / 2026</span>
-    </a>
-    <nav class="topnav" aria-label="Primary navigation">
-      <a href="#route">The route</a>
-      <a href="#work">The work</a>
-      <a href="#after-hours">After hours</a>
-      <a href="#home">Home</a>
-    </nav>
-    <a class="soundtrack-link" href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer" aria-label="Open Nikhil's Apple Music">
-      <i aria-hidden="true"></i><span>My soundtrack</span>
-    </a>
-    <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
-    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-      <a href="#route">The route</a><a href="#work">The work</a><a href="#after-hours">After hours</a><a href="#home">Home</a><a href="#hello">Say hello</a>
-    </nav>
+  <a class="skip" href="#letter">Skip to the story</a>
+  <header class="masthead">
+    <a class="signature" href="#top" aria-label="Nikhil Singh, beginning">Nikhil<span>Singh.</span></a>
+    <a class="masthead-note" href="#letter">A LIFE, STILL IN MOTION</a>
+    <button class="index-toggle" type="button" aria-expanded="false" aria-controls="index">Index <span class="menu-mark" aria-hidden="true"><i></i><i></i></span></button>
   </header>
 
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media" aria-hidden="true"></div>
-      <div class="headlight headlight-one" aria-hidden="true"></div>
-      <div class="headlight headlight-two" aria-hidden="true"></div>
-      <div class="film-grain" aria-hidden="true"></div>
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span></span> After midnight / somewhere between versions</p>
-        <h1 id="hero-title">Get in.</h1>
-        <p class="hero-line">We have somewhere<br>to <em>become.</em></p>
-        <p class="hero-intro">No polished summary. No five-year plan. Just the roads, people, work, music, and unreasonable dreams that made me.</p>
-        <a class="start-ride" href="#choose"><span>Take the passenger seat</span><b aria-hidden="true">↓</b></a>
-      </div>
-      <div class="hero-route-card reveal" aria-label="Route card">
-        <span>TONIGHT'S ROUTE</span>
-        <ol><li>Delhi</li><li>Mumbai</li><li>Delhi, again</li><li>Bengaluru</li></ol>
-        <small>Stops added whenever life changes its mind.</small>
-      </div>
-      <div class="dashboard-strip" aria-hidden="true">
-        <span>01:17</span><div><i></i><i></i><i></i><i></i><i></i></div><span>STILL BECOMING</span><span>24°C</span>
-      </div>
-    </section>
-
-    <section class="choose" id="choose" aria-labelledby="choose-title">
-      <div class="choose-heading reveal">
-        <p class="section-label">PASSENGER QUESTION / 00</p>
-        <h2 id="choose-title">What do you want<br>to talk about<br><em>on the way?</em></h2>
-        <p>Pick the first conversation. The complete route is still here when you want it.</p>
-      </div>
-      <div class="conversation-list" role="group" aria-label="Choose where to begin">
-        <button class="conversation reveal" type="button" data-destination="work">
-          <span>01</span><div><strong>The things I build</strong><small>Product, data, useful obsession</small></div><b>↘</b>
-        </button>
-        <button class="conversation reveal" type="button" data-destination="route">
-          <span>02</span><div><strong>The places that changed me</strong><small>Four cities, several lives</small></div><b>↘</b>
-        </button>
-        <button class="conversation reveal" type="button" data-destination="after-hours">
-          <span>03</span><div><strong>The person after work</strong><small>Music, mountains, people, home</small></div><b>↘</b>
-        </button>
-      </div>
-      <p class="choose-note" id="chooseNote" aria-live="polite">Or keep scrolling. I know the route.</p>
-    </section>
-
-    <nav class="journey-rail" aria-label="Journey chapters">
-      <span class="rail-label">TRIP <b id="tripProgress">00%</b></span>
-      <div class="rail-line" aria-hidden="true"><i id="railProgress"></i></div>
-      <a href="#route" data-section="route"><b>01</b><span>Cities</span></a>
-      <a href="#work" data-section="work"><b>02</b><span>Work</span></a>
-      <a href="#road" data-section="road"><b>03</b><span>Road</span></a>
-      <a href="#after-hours" data-section="after-hours"><b>04</b><span>After hours</span></a>
-      <a href="#home" data-section="home"><b>05</b><span>Home</span></a>
-    </nav>
-
-    <section class="route-intro" id="route" aria-labelledby="route-title">
-      <div class="route-intro-copy reveal">
-        <p class="section-label light">THE ROUTE / 01</p>
-        <h2 id="route-title">Every city kept<br>a different version<br><em>of me.</em></h2>
-      </div>
-      <p class="route-intro-note reveal">I did not move with a master plan. I moved, learned, missed home, changed my mind, and kept the parts that felt true.</p>
-      <div class="route-map" aria-hidden="true">
-        <span>DEL</span><i></i><span>BOM</span><i></i><span>DEL</span><i></i><span>BLR</span>
-      </div>
-    </section>
-
-    <div class="city-sequence">
-      <article class="city city-delhi" data-city="DELHI">
-        <div class="city-media" aria-hidden="true"></div>
-        <div class="city-shade" aria-hidden="true"></div>
-        <div class="city-copy reveal">
-          <p><span>01</span> THE ROOT</p>
-          <h3>Delhi taught me<br>how to want more<br><em>without leaving myself.</em></h3>
-          <div class="city-detail"><strong>24 years of becoming</strong><span>Home. Winter drives. Cricket arguments. Malai chaap. The first draft of every dream.</span></div>
+  <main id="top">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro-stage">
+        <div class="intro-meta mono"><span>PERSONAL JOURNAL — VOL. 01</span><span>DELHI IN MY BONES. ELSEWHERE IN MY HEAD.</span></div>
+        <div class="intro-title-wrap">
+          <p class="eyebrow">HEY, I'M NIKHIL.</p>
+          <h1 id="intro-title"><span>Taking the</span><span><em>long way</em></span><span>home<span class="title-dot">.</span></span></h1>
+          <p class="intro-description">A few cities. A lot of side quests.<br> And a life I’m still figuring out.</p>
         </div>
-        <span class="city-code">DEL / HOME</span>
-      </article>
+        <figure class="intro-photo">
+          <img src="assets/mountain-dusk.jpg" width="2600" height="3903" alt="Headlights tracing hairpin bends through a mountain valley at dusk" fetchpriority="high">
+          <div class="photo-shade"></div>
+          <figcaption><span class="mono">FIG. 01 / THE SCENIC ROUTE</span><span>Some turns make more sense later.</span></figcaption>
+        </figure>
+        <div class="photo-margin mono">THE PLAN WAS NEVER A STRAIGHT LINE.</div>
+        <div class="intro-bottom"><a class="begin-link" href="#letter"><span class="circle-arrow">↓</span><span>COME ALONG.<br> <small>THERE'S NO RUSH.</small></span></a><span class="handwritten">abhi toh shuru kiya hai.</span><span class="mono intro-edition">AN UNFINISHED STORY<br> BY NIKHIL SINGH</span></div>
+        <div class="into-scene" aria-hidden="true"><span class="mono">THE LONG WAY HOME</span><p>The detours<br> <em>became the story.</em></p><span class="mono">SCROLL TO KEEP GOING ↓</span></div>
+      </div>
+    </section>
 
-      <article class="city city-mumbai" data-city="MUMBAI">
-        <div class="city-media" aria-hidden="true"></div>
-        <div class="city-shade" aria-hidden="true"></div>
-        <div class="city-copy align-right reveal">
-          <p><span>02</span> THE DETOUR / 2025</p>
-          <h3>Mumbai was never<br>the plan.<br><em>That was the point.</em></h3>
-          <div class="city-detail"><strong>Dream11 during IPL</strong><span>Three teams. Impossible pace. A city I arrived in for work and found strangely hard to leave.</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7471056192446976000/" target="_blank" rel="noopener noreferrer">Read the last-day note ↗</a>
+    <section class="letter section-pad" id="letter" aria-labelledby="letter-title">
+      <div class="section-caption"><span class="mono">A NOTE BEFORE WE GO</span><span class="tiny-star" aria-hidden="true">✳</span></div>
+      <div class="letter-body">
+        <h2 class="word-reveal" id="letter-title">There’s a version of me on LinkedIn.<br> There’s a version of me at 2 AM.<br> <em>I wanted a place for both.</em></h2>
+        <div class="letter-foot"><p>I work with product and data. I also overthink, lift, write things I almost don’t post, and take the longer road for a better song.</p><p>This is where those lives meet. The work, the cities, the people, the little things that somehow become the big things.</p></div>
+      </div>
+      <div class="route-picker"><span class="mono">WHAT BRINGS YOU HERE?</span><a href="#journey">The places <span>↗</span></a><a href="#off-duty">The person <span>↗</span></a><a href="#work">The work <span>↗</span></a><a href="#notes">The thoughts <span>↗</span></a></div>
+    </section>
+
+    <section class="journey" id="journey" aria-labelledby="journey-title">
+      <div class="journey-head"><div><span class="mono">01 / PLACES THAT STAYED</span><h2 id="journey-title">Different cities.<br> <em>Different versions of me.</em></h2></div><p>I kept moving.<br> Some things came with me.</p></div>
+      <div class="film-window">
+        <div class="city-track">
+          <button class="city-frame delhi" type="button" data-story="delhi" aria-label="Open the Delhi chapter">
+            <img src="assets/delhi-india-gate-night.jpg" alt="India Gate illuminated at night in Delhi" loading="lazy">
+            <span class="city-shade"></span><span class="city-top mono"><span>01 — THE ROOTS</span><span>28.6139° N</span></span>
+            <span class="city-text"><span class="city-name">Delhi.</span><span class="city-line">Before the ambition,<br> there was <em>home.</em></span></span><span class="city-bottom mono"><span>WINTER DRIVES. FAMILIAR VOICES.</span><span class="open-circle">↗</span></span>
+          </button>
+          <button class="city-frame mumbai" type="button" data-story="mumbai" aria-label="Open the Mumbai chapter">
+            <img src="assets/mumbai-sea-link-night.jpg" alt="Bandra-Worli Sea Link reflected in Mumbai's water at night" loading="lazy">
+            <span class="city-shade"></span><span class="city-top mono"><span>02 — THE UNEXPECTED</span><span>19.0760° N</span></span>
+            <span class="city-text"><span class="city-name">Mumbai.</span><span class="city-line">Came for the work.<br> Left with <em>a city.</em></span></span><span class="city-bottom mono"><span>DREAM11. IPL. FINDING MY FEET.</span><span class="open-circle">↗</span></span>
+          </button>
+          <button class="city-frame returning" type="button" data-story="return" aria-label="Open the return to Delhi chapter">
+            <img src="assets/delhi-connaught-place-night.jpg" alt="Connaught Place's colonnades glowing after dark in Delhi" loading="lazy">
+            <span class="city-shade"></span><span class="city-top mono"><span>03 — THE BREATH BETWEEN</span><span>28.6304° N</span></span>
+            <span class="city-text"><span class="city-name">Delhi,<br> <em>again.</em></span><span class="city-line">Same roads.<br> A different <em>headspace.</em></span></span><span class="city-bottom mono"><span>SOME RETURNS ARE A WAY FORWARD.</span><span class="open-circle">↗</span></span>
+          </button>
+          <button class="city-frame bengaluru" type="button" data-story="bengaluru" aria-label="Open the Bengaluru chapter">
+            <img src="assets/bengaluru-night-traffic.jpg" alt="A busy Bengaluru road full of headlights at night" loading="lazy">
+            <span class="city-shade"></span><span class="city-top mono"><span>04 — THE CHAPTER I'M IN</span><span>12.9716° N</span></span>
+            <span class="city-text"><span class="city-name">Bengaluru.</span><span class="city-line">New city.<br> Same <em>overthinking.</em></span></span><span class="city-bottom mono"><span>AN INTRODUCTION, IN TRAFFIC.</span><span class="open-circle">↗</span></span>
+          </button>
         </div>
-        <span class="city-code">BOM / 19.0760° N</span>
-      </article>
+      </div>
+      <div class="journey-footer"><span class="mono journey-hint">SCROLL THROUGH THE CHAPTERS →</span><div class="city-stops" aria-label="Go to a city"><button type="button" data-stop="0" class="active" aria-label="Delhi" aria-pressed="true">DEL</button><span></span><button type="button" data-stop="1" aria-label="Mumbai" aria-pressed="false">BOM</button><span></span><button type="button" data-stop="2" aria-label="Delhi again" aria-pressed="false">DEL</button><span></span><button type="button" data-stop="3" aria-label="Bengaluru" aria-pressed="false">BLR</button></div><span class="mono city-counter">01 / 04</span></div>
+    </section>
 
-      <article class="city city-return" data-city="DELHI AGAIN">
-        <div class="city-media" aria-hidden="true"></div>
-        <div class="city-shade" aria-hidden="true"></div>
-        <div class="city-copy reveal">
-          <p><span>03</span> THE RETURN</p>
-          <h3>Going back<br>is not the same<br><em>as going backwards.</em></h3>
-          <div class="city-detail"><strong>The pause between chapters</strong><span>Familiar roads. Bigger questions. Enough quiet to choose the next move instead of merely making one.</span></div>
+    <section class="interlude" aria-labelledby="interlude-title"><div class="interlude-rule"></div><p class="mono">A SMALL REALISATION, SOMEWHERE ALONG THE WAY</p><h2 class="word-reveal" id="interlude-title">You can want<br> <em>a bigger life</em><br> and still miss home.</h2><span class="interlude-doodle" aria-hidden="true">↴</span><p class="interlude-note">I’m learning to let both be true.</p></section>
+
+    <section class="off-duty section-pad" id="off-duty" aria-labelledby="off-title">
+      <div class="off-heading"><span class="mono">02 / WHEN THE LAPTOP CLOSES</span><h2 id="off-title">The rest<br> <em>of me.</em></h2><p>These aren’t hobbies<br> at the bottom of a résumé.</p></div>
+      <div class="off-layout"><div class="off-visual" data-interest="cars"><img id="offImage" src="assets/bmw-f82-black.jpg" alt="Black BMW M4 F82 photographed beneath a concrete structure" loading="lazy"><span class="off-visual-shade"></span><div class="off-image-label"><span class="mono" id="offImageLabel">01 / THE GARAGE IN MY HEAD</span><span class="off-image-note" id="offImageNote">Some dreams come with four wheels.</span></div><span class="off-crosshair" aria-hidden="true">+</span></div>
+        <div class="off-list" aria-label="Explore the rest of me">
+          <div class="off-item active"><button type="button" class="off-button" aria-expanded="true" data-interest="cars"><span class="mono">01</span><span>The long drives</span><b aria-hidden="true">−</b></button><div class="off-detail"><p>The BMW M4 F82 made me a car person. The Cruze made the obsession personal. Some cars stay in your head long before they’re in your garage.</p><button class="text-link" type="button" data-story="cars">THE ONE THAT STARTED IT ↗</button></div></div>
+          <div class="off-item"><button type="button" class="off-button" aria-expanded="false" data-interest="music"><span class="mono">02</span><span>One more song</span><b aria-hidden="true">+</b></button><div class="off-detail" hidden><p>I’ll reach home and spend forty more minutes in the car because the playlist is still doing its thing. You get it.</p><button class="text-link" type="button" data-story="music">COME FOR THE MUSIC ↗</button></div></div>
+          <div class="off-item"><button type="button" class="off-button" aria-expanded="false" data-interest="mountains"><span class="mono">03</span><span>A little altitude</span><b aria-hidden="true">+</b></button><div class="off-detail" hidden><p>Jibhi. Nainital. A quieter version of my head. The problems wait; I usually return a little lighter.</p><button class="text-link" type="button" data-story="mountains">TAKE THE SCENIC ROUTE ↗</button></div></div>
+          <div class="off-item"><button type="button" class="off-button" aria-expanded="false" data-interest="cricket"><span class="mono">04</span><span>Never just a game</span><b aria-hidden="true">+</b></button><div class="off-detail" hidden><p>Cricket was part of my life before it became part of my work. The opinions, unfortunately, have always been free.</p><button class="text-link" type="button" data-story="cricket">A FAN, BEFORE AN ANALYST ↗</button></div></div>
+          <div class="off-item"><button type="button" class="off-button" aria-expanded="false" data-interest="people"><span class="mono">05</span><span>My kind of wealth</span><b aria-hidden="true">+</b></button><div class="off-detail" hidden><p>Being loved. Being understood. Having people who knew you before any of this. Still the biggest flex.</p><button class="text-link" type="button" data-story="people">THE PEOPLE PART ↗</button></div></div>
+          <div class="off-item"><button type="button" class="off-button" aria-expanded="false" data-interest="training"><span class="mono">06</span><span>Another rep</span><b aria-hidden="true">+</b></button><div class="off-detail" hidden><p>The place where failing a rep can mean you’re getting stronger. I’m trying to remember that outside the gym, too.</p><button class="text-link" type="button" data-story="training">A WORK IN PROGRESS ↗</button></div></div>
         </div>
-        <span class="city-code">DEL / RECALCULATING</span>
-      </article>
-
-      <article class="city city-bengaluru" data-city="BENGALURU">
-        <div class="city-media" aria-hidden="true"></div>
-        <div class="city-shade" aria-hidden="true"></div>
-        <div class="city-copy align-right reveal">
-          <p><span>04</span> NOW</p>
-          <h3>Bengaluru made<br>the introduction<br><em>in traffic.</em></h3>
-          <div class="city-detail"><strong>47 km / 2 h 22 min</strong><span>The city asked for quality time before letting me in. Fair enough. I like a dramatic opening.</span></div>
-          <a href="https://x.com/itsnikhilversee/status/2102736767963263405" target="_blank" rel="noopener noreferrer">See the arrival receipt ↗</a>
-        </div>
-        <span class="city-code">BLR / CURRENT LOCATION</span>
-      </article>
-    </div>
-
-    <section class="work" id="work" aria-labelledby="work-title">
-      <div class="work-intro reveal">
-        <p class="section-label">THE WORK / 02</p>
-        <h2 id="work-title">I like problems<br>that keep bothering me<br><em>after the meeting ends.</em></h2>
-        <p>The title changes. The instinct does not: notice the friction, understand the system, make something people can actually use.</p>
-      </div>
-      <div class="work-ledger">
-        <a class="ledger-row reveal" href="https://www.linkedin.com/feed/update/urn:li:activity:7477601772543328256/" target="_blank" rel="noopener noreferrer">
-          <span class="ledger-num">01</span><span class="ledger-type">DREAM CRICKET</span><h3>“Go play the game.”<br>So I played all night.</h3><p>By morning, the analyst had disappeared and the fan had taken over. The best sprint began there.</p><b>Open story ↗</b>
-        </a>
-        <a class="ledger-row reveal" href="https://www.linkedin.com/feed/update/urn:li:activity:7467790924903960576/" target="_blank" rel="noopener noreferrer">
-          <span class="ledger-num">02</span><span class="ledger-type">EVENTIFY</span><h3>Two days of friction.<br>Twenty minutes after.</h3><p>I got tired of a broken workflow before it reached a roadmap, so I built the tool I wanted.</p><b>Open story ↗</b>
-        </a>
-        <a class="ledger-row reveal" href="https://www.linkedin.com/feed/update/urn:li:activity:7462728862700007424/" target="_blank" rel="noopener noreferrer">
-          <span class="ledger-num">03</span><span class="ledger-type">TEXT TO SQL</span><h3>The best tool<br>made me unnecessary.</h3><p>A plain-English path from a business question to the answer, without an analyst in the middle.</p><b>Open story ↗</b>
-        </a>
-      </div>
-      <aside class="work-receipt reveal" aria-label="Working note">
-        <span>WORKING NOTE / KEEP</span>
-        <p>Curiosity gets me into the room.<br>Usefulness decides what survives.</p>
-        <small>Filed under: things worth losing sleep over</small>
-      </aside>
-    </section>
-
-    <section class="road" id="road" aria-labelledby="road-title">
-      <div class="road-media" aria-hidden="true"></div>
-      <div class="road-copy reveal">
-        <p class="section-label light">THE ROAD / 03</p>
-        <h2 id="road-title">I still look back<br><em>after parking.</em></h2>
-        <p>Some people see transport. I see a machine, a mood, and a reason to take the longer road. The BMW M4 F82 made me a car guy. The Chevrolet Cruze made the obsession personal.</p>
-        <div class="road-links"><a href="https://x.com/itsnikhilversee/status/1604792148263436289" target="_blank" rel="noopener noreferrer">The origin story ↗</a><a href="https://x.com/itsnikhilversee/status/2091462322569269382" target="_blank" rel="noopener noreferrer">The Cruze search ↗</a></div>
-      </div>
-      <div class="road-quote reveal"><span>PASSENGER NOTE</span><p>Best conversations happen when nobody has to make eye contact.</p></div>
-    </section>
-
-    <section class="after-hours" id="after-hours" aria-labelledby="after-title">
-      <div class="after-heading reveal">
-        <p class="section-label light">AFTER HOURS / 04</p>
-        <h2 id="after-title">Work explains<br>what I do.<br><em>This explains me.</em></h2>
-      </div>
-      <div class="world-nav" role="tablist" aria-label="Explore Nikhil after hours">
-        <button class="world-button active" type="button" role="tab" aria-selected="true" data-world="music"><span>01</span>Music</button>
-        <button class="world-button" type="button" role="tab" aria-selected="false" data-world="mountains"><span>02</span>Mountains</button>
-        <button class="world-button" type="button" role="tab" aria-selected="false" data-world="training"><span>03</span>Training</button>
-        <button class="world-button" type="button" role="tab" aria-selected="false" data-world="people"><span>04</span>People</button>
-        <button class="world-button" type="button" role="tab" aria-selected="false" data-world="cricket"><span>05</span>Cricket</button>
-      </div>
-      <div class="world-stage" id="worldStage" data-world="music" role="tabpanel" aria-live="polite">
-        <div class="world-image" aria-hidden="true"></div>
-        <div class="world-copy">
-          <span id="worldKicker">MUSIC / PARKED, STILL PLAYING</span>
-          <h3 id="worldTitle">The car is home.<br>I am not done yet.</h3>
-          <p id="worldText">Sometimes I reach home and sit in the car for forty more minutes because the playlist understands the assignment.</p>
-          <a id="worldLink" href="https://x.com/itsnikhilversee/status/2081462201479733641" target="_blank" rel="noopener noreferrer">Open this memory ↗</a>
-        </div>
-        <div class="world-number" id="worldNumber" aria-hidden="true">01</div>
       </div>
     </section>
 
-    <section class="glovebox" aria-labelledby="glovebox-title">
-      <div class="glovebox-head reveal">
-        <p class="section-label">OPEN THE GLOVEBOX / 05</p>
-        <h2 id="glovebox-title">Loose thoughts.<br>Things I meant.<br><em>Receipts that stayed.</em></h2>
-      </div>
-      <div class="memory-board">
-        <a class="memory memory-mountains reveal" href="https://x.com/itsnikhilversee/status/2080717938701836336" target="_blank" rel="noopener noreferrer">
-          <span>MOUNTAINS / JUL 2026</span><p>Every time I return, the problems are still waiting. Somehow, I am lighter.</p><b>Read the long note ↗</b>
-        </a>
-        <a class="memory memory-people reveal" href="https://www.linkedin.com/feed/update/urn:li:activity:7489526646002089985/" target="_blank" rel="noopener noreferrer">
-          <span>PEOPLE / ALWAYS</span><p>I am not self-made.<br>I am people-made.</p><b>Read the Friendship Day note ↗</b>
-        </a>
-        <a class="memory memory-funny reveal" href="https://x.com/itsnikhilversee/status/2099005667222945858" target="_blank" rel="noopener noreferrer">
-          <span>ARAVALLIS / 7:00 AM</span><p>Accidentally looking like I have a Boiler Room set at 8.</p><b>See the frame ↗</b>
-        </a>
-        <a class="memory memory-home reveal" href="https://x.com/itsnikhilversee/status/2108875377791951186" target="_blank" rel="noopener noreferrer">
-          <span>HOME / OCT 2026</span><p>Some parts of you never grow up.</p><b>Forever mumma's boy ↗</b>
-        </a>
-      </div>
-    </section>
+    <section class="soundtrack" aria-labelledby="soundtrack-title"><div class="record-wrap" aria-hidden="true"><div class="record"><div class="record-label"><span>NIKHIL'S<br> SIDE QUESTS</span><i></i><small>SIDE A / AFTER HOURS</small></div></div><span class="record-sleeve">33⅓ RPM<br> NO SKIPS. NO RUSH.</span></div><div class="soundtrack-copy"><span class="mono">THE DRIVE IS OVER. THE SONG ISN'T.</span><h2 id="soundtrack-title">Already home.<br> <em>Still in the car.</em></h2><p>Somewhere between Aujla, Shreya, and that one Bollywood song I thought I’d forgotten.</p><a class="music-link" href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer"><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>MY CORNER OF APPLE MUSIC <span>↗</span></a><span class="handwritten">okay, last song. pakka.</span></div></section>
 
-    <section class="home" id="home" aria-labelledby="home-title">
-      <figure class="home-frame reveal">
-        <img src="assets/home-room-night-v2.jpg" alt="A quiet late-night room with city lights, headphones, gym wraps, car keys and a glowing phone" width="1122" height="1402">
-        <figcaption><span>01:07 AM</span><span>A ROOM OF MY OWN</span></figcaption>
-      </figure>
-      <div class="home-copy reveal">
-        <p class="section-label light">THE LAST STOP / 06</p>
-        <h2 id="home-title">I wanted a room<br>of my own.<br><em>Then I missed<br>the interruptions.</em></h2>
-        <p>You move away to grow. Some nights, you would trade all that independence to sit beside your maa and annoy her for no reason.</p>
-        <a href="https://x.com/itsnikhilversee/status/2108875377791951186" target="_blank" rel="noopener noreferrer">The original thought ↗</a>
-      </div>
-    </section>
+    <section class="work section-pad" id="work" aria-labelledby="work-title"><div class="work-heading"><span class="mono">03 / THE PART YOU CAN FIND ON LINKEDIN</span><h2 id="work-title">Curiosity, with<br> <em>something to show for it.</em></h2><p>I started in operations. Found my way into data.<br> Kept getting pulled toward the thing we could build.</p></div><div class="work-rows">
+      <button class="work-row" type="button" data-story="dream"><span class="mono">01 / DREAM CRICKET</span><h3>Played all night.<br> <em>Came back with questions.</em></h3><p>When the fan in me<br> became part of the work.</p><span class="work-arrow">↗</span></button>
+      <button class="work-row" type="button" data-story="eventify"><span class="mono">02 / EVENTIFY</span><h3>Friction gets<br> <em>under my skin.</em></h3><p>A recurring problem.<br> A reason to build.</p><span class="work-arrow">↗</span></button>
+      <button class="work-row" type="button" data-story="sql"><span class="mono">03 / TEXT TO SQL</span><h3>Ask the question.<br> <em>Get to the answer.</em></h3><p>Making data less dependent<br> on the person who knows SQL.</p><span class="work-arrow">↗</span></button>
+    </div><div class="work-path mono"><span>GOMECHANIC</span><i>→</i><span>PHYSICSWALLAH</span><i>→</i><span>DREAM11</span><i>→</i><span>STILL BUILDING</span></div></section>
 
-    <section class="hello" id="hello" aria-labelledby="hello-title">
-      <div class="hello-copy reveal">
-        <p class="section-label">END OF THIS RIDE / START OF ANOTHER</p>
-        <h2 id="hello-title">If we made it<br>this far,<br><em>say hello.</em></h2>
-        <p>Bring a work idea, a car argument, a mountain plan, or one song that deserves a night drive.</p>
-      </div>
-      <div class="contact-list reveal">
-        <a href="mailto:nikhilsingh77769@gmail.com" aria-label="Email Nikhil"><span>01</span><strong>Email</strong><b>Write ↗</b></a>
-        <a href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><span>02</span><strong>Instagram</strong><b>Frames ↗</b></a>
-        <a href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer"><span>03</span><strong>X</strong><b>Thoughts ↗</b></a>
-        <a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer"><span>04</span><strong>LinkedIn</strong><b>Work ↗</b></a>
-        <a href="https://music.apple.com/profile/itsnikhilversee" target="_blank" rel="noopener noreferrer"><span>05</span><strong>Apple Music</strong><b>Play ↗</b></a>
-      </div>
-      <footer><span>© <span id="year">2026</span> Nikhil Singh</span><span>Built from the passenger seat.</span><a href="#top">Take it from the top ↑</a></footer>
-    </section>
+    <section class="notes section-pad" id="notes" aria-labelledby="notes-title"><div class="notes-heading"><span class="mono">04 / SENT BEFORE I COULD OVERTHINK IT</span><h2 id="notes-title">A few open<br> <em>tabs in my head.</em></h2><p>Small thoughts.<br> Occasionally, a whole paragraph.</p></div><div class="note-desk">
+      <button class="paper-note note-one" type="button" data-story="becoming"><span class="mono">NO. 001 / TO MY FUTURE SELF</span><h3>The before<br> is worth<br> <em>keeping.</em></h3><p>I kept waiting for a version of me that was ready to be seen.</p><span class="paper-bottom mono">ON BEGINNING ANYWAY <b>↗</b></span></button>
+      <button class="paper-note note-two" type="button" data-story="home"><span class="mono">NO. 002 / A CONSTANT</span><h3>Forever<br> <em>mumma’s<br> boy.</em></h3><p>You can move cities. Some parts of home move with you.</p><span class="paper-bottom mono">ON WHO I AM, STILL <b>↗</b></span></button>
+      <button class="paper-note note-three" type="button" data-story="mountains"><span class="mono">NO. 003 / LESS NOISE</span><h3>A different<br> kind of<br> <em>perspective.</em></h3><p>The mountains have a way of making the wrong things feel smaller.</p><span class="paper-bottom mono">ON GETTING OUT OF MY HEAD <b>↗</b></span></button>
+    </div><a class="all-notes text-link" href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer">THE LESS EDITED VERSION, ON X ↗</a></section>
+
+    <aside class="pocket-drive" aria-labelledby="pocket-drive-title"><svg viewBox="0 0 45 58" aria-hidden="true"><rect x="5" y="6" width="22" height="39" rx="2"/><path d="M2 47h28M10 12h12v10H10zM27 17l10 8v17q0 7-5 7t-5-7V31M34 20l6 4v7"/><path d="m13 31 5 4-5 4"/></svg><div><span class="mono">A VERY IMPORTANT SIDE QUEST</span><h2 id="pocket-drive-title">Fuel for <em>a little detour?</em></h2><p>A tiny car. A few fuel cans. The good kind of nostalgia.</p></div><button class="play-drive" type="button" data-play-drive>TAKE A SPIN <span aria-hidden="true">↗</span></button></aside>
+
+    <section class="home-ending" id="hello" aria-labelledby="hello-title"><div class="ending-meta mono"><span>NO FINAL DESTINATION, REALLY.</span><span>JUST A GOOD PLACE TO PAUSE.</span></div><h2 id="hello-title">Still finding<br> <em>my way.</em><span>Glad you’re here.</span></h2><div class="ending-bottom"><p>A work idea. A mountain plan.<br> A song I need to hear.<br> <em>Start anywhere.</em></p><a class="hello-link" href="mailto:nikhilsingh77769@gmail.com">Say hello <span>↗</span></a></div><footer><span class="signature">Nikhil<span>Singh.</span></span><nav aria-label="Social links"><a href="mailto:nikhilsingh77769@gmail.com" aria-label="Email Nikhil" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg></a><a href="https://www.instagram.com/itsnikhilversee/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></a><a href="https://x.com/itsnikhilversee" target="_blank" rel="noopener noreferrer" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h4l12 18h-4L4 3Zm16 0L4 21"/></svg></a><a href="https://www.linkedin.com/in/itsnikhilversee/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v12M5 3v2M10 21V9m0 5c0-7 9-7 9 0v7"/></svg></a></nav><div class="footer-col mono"><span>PERSONAL JOURNAL / 2026</span><button type="button" class="credits-button" data-story="credits">THE PEOPLE BEHIND THE PICTURES ↗</button></div><a class="back-top mono" href="#top">ONCE MORE? ↑</a></footer></section>
   </main>
+
+  <nav class="index-panel" id="index" aria-label="Site index" hidden><div class="index-intro"><span class="mono">A SMALL INDEX OF A BIG, UNFINISHED LIFE</span><p>Pick a turn.<br> <em>I’ll meet you there.</em></p></div><div class="index-links"><a href="#letter"><span class="mono">00</span>A note before we go <b>↗</b></a><a href="#journey"><span class="mono">01</span>The places <b>↗</b></a><a href="#off-duty"><span class="mono">02</span>The person <b>↗</b></a><a href="#work"><span class="mono">03</span>The work <b>↗</b></a><a href="#notes"><span class="mono">04</span>The thoughts <b>↗</b></a><a href="#hello"><span class="mono">05</span>Say hello <b>↗</b></a></div><span class="index-foot mono">BEST EXPLORED WITH A LITTLE TIME TO WASTE.</span></nav>
+  <dialog class="story-dialog" aria-labelledby="story-title"><button class="dialog-close" type="button" aria-label="Close story">Close <span>×</span></button><div class="dialog-visual"><img id="story-image" src="assets/mumbai-sea-link-night.jpg" alt=""><span id="story-figure" class="mono"></span></div><div class="dialog-copy"><span id="story-kicker" class="mono"></span><h2 id="story-title"></h2><div id="story-body"></div><a id="story-source" class="text-link" target="_blank" rel="noopener noreferrer">OPEN THE ORIGINAL ↗</a><span class="dialog-foot mono">A PAGE FROM NIKHIL'S PERSONAL JOURNAL</span></div></dialog>
+  <dialog class="drive-dialog" id="pocketDrive" aria-labelledby="drive-title" aria-describedby="drive-instructions"><div class="drive-wrap"><div class="drive-top"><span class="mono">NIKHIL’S SIDE QUESTS / 01</span><button class="drive-close" type="button" aria-label="Close little driving game">Close <span aria-hidden="true">×</span></button></div><h2 class="drive-title" id="drive-title">A little<br> <em>detour.</em></h2><p class="drive-intro" id="drive-instructions">Pick up the petrol. Dodge the cones. Use the arrows, tap, or swipe to steer. Just 22 seconds on the scenic route.</p><div class="drive-dashboard"><div class="drive-meter"><svg viewBox="0 0 20 24" aria-hidden="true"><path d="M2 21h13M4 20V3h8v17M5 5h6v5H5M12 7l5 4v8q0 3-3 0v-5"/></svg><div class="fuel-bar" id="driveFuelLabel" role="progressbar" aria-label="Fuel remaining" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><span id="driveFuel"></span></div></div><div class="drive-distance"><b id="driveDistance">0.00</b><span>KM</span></div></div><div class="drive-arena"><canvas id="driveCanvas" aria-label="A small nostalgic road with a car, fuel cans, and traffic cones"></canvas><button class="drive-start" id="driveStart" type="button">Let’s drive</button></div><p class="drive-message" id="driveMessage" role="status" aria-live="polite">No rush. Just a little detour.</p><div class="drive-controls"><button type="button" data-steer="left" aria-label="Steer left">←</button><span class="mono">← → KEYS / TAP / SWIPE<br> FUEL UP. KEEP ROLLING.</span><button type="button" data-steer="right" aria-label="Steer right">→</button></div><div class="drive-foot"><b>LONGEST DETOUR: <span id="driveBest">0.00 KM</span></b><span>YOUR BEST STAYS ON THIS DEVICE.</span></div></div></dialog>
 </body>
 </html>
