@@ -1,7 +1,11 @@
-# Nikhil Singh — The long way home
+# Nikhil Singh — Still on my way
 
-Personal website for https://itsnikhilversee.in, deployed through the existing Vercel Git integration from main.
+Personal website at https://itsnikhilversee.in/.
 
-A buildless HTML, CSS and JavaScript site. Run `python3 -m http.server 4190 --bind 127.0.0.1` in this directory for local preview.
+Static HTML, CSS, and JavaScript. The story follows one native document scroll; optional chapter links and the small driving game are browser-local interactions.
 
-`app.js` contains the chapter, story and navigation behavior; `game.js` contains the optional, locally scored 22-second driving toy. GSAP and ScrollTrigger are bundled locally. Fonts load from Google Fonts with system fallbacks. No game backend or account is needed. Picture credits are in the footer overlay and `credits.html`.
+## Edit and run
+
+Edit `index.html`, `style.css`, and `game.css` directly. After changing `stories.js`, `app.js`, or `game.js`, regenerate `bundle.js` with `python3 build.py`. Serve this directory with a static HTTP server for preview. Push the reviewed main branch to trigger the linked Vercel production deployment.
+
+Photography illustrates places and interests; source credits are available in the page’s credits dialog and at `credits.html`. Fonts are served locally with OFL licenses in `assets/fonts/`.
